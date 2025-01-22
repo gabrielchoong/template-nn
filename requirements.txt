@@ -1,1 +1,2 @@
 torch>=2.5.0
+setuptools>=75.1.0
