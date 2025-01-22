@@ -1,3 +1,23 @@
 [build-system]
 requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "template-nn"
+version = "0.1.0"
+authors = [
+    { name = "Gabriel Choong Ge Liang", email = "gabrielchoonggeliang@gmail.com"}
+]
+description = "A neural network model architecture template"
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+license = { text = "MIT"}
+
+[project.urls]
+Homepage = "https://github.com/gabrielchoong/template-nn"
+Issues = "https://github.com/gabrielchoong/template-nn/issues"
