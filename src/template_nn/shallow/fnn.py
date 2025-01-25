@@ -1,10 +1,10 @@
-import warnings
-from typing import Iterable
+from typing import Iterable, overload
 
+import pandas as pd
 import torch
 import torch.nn as nn
 
-from template_nn.utils.args_val import validate_args, iterable_to_list
+from template_nn.utils.model_compose import build_dict_model, build_df_model, build_norm_model
 
 
 class F_NN(nn.Module):
@@ -29,56 +29,43 @@ class F_NN(nn.Module):
 
     """
 
+    @overload
+    def __init__(self, tabular: dict | pd.DataFrame | None = None, *args, **kwargs) -> None:
+        ...
+
+    @overload
     def __init__(self,
-                 input_size: int,
-                 output_size: int,
-                 hidden_sizes: Iterable[int],
-                 hidden_layer_num: int | None = None,
-                 activation_functions: list[callable] = None) -> None:
+                 input_size: int | None = None,
+                 output_size: int | None = None,
+                 hidden_sizes: Iterable[int] | None = None,
+                 activation_functions: list[callable] | None = None):
+        ...
+
+    def __init__(self,
+                 input_size: int | None = None,
+                 output_size: int | None = None,
+                 hidden_sizes: Iterable[int] | None = None,
+                 tabular: dict | pd.DataFrame | None = None,
+                 activation_functions: list[callable] | None = None) -> None:
+
         """
         Initialises the neural network with parameters:
         :param input_size: int
         :param output_size: int
-        :param hidden_layer_num: int
         :param hidden_sizes: Iterable[int]
         :param activation_functions: list[callable]
         """
 
         super(F_NN, self).__init__()
 
-        # missing arguments will result in errors that are hard to debug
-        self.input_size, self.output_size, self.hidden_layer_num, self.hidden_sizes, self.activation_functions \
-            = validate_args(input_size, output_size, hidden_layer_num, hidden_sizes, activation_functions)
+        if isinstance(tabular, dict):
+            self.model = build_dict_model(tabular)
 
-        if self.hidden_layer_num >= 3:
-            warnings.warn(
-                "The network is considered deep (>=3 hidden layers). Consider using model templates from the 'deep' directory for better architecture options.",
-                UserWarning
-            )
-        else:
-            warnings.warn(
-                "A shallow neural network (<=2 hidden layers) is being used. If you need more complexity, consider switching to a deeper architecture.",
-                UserWarning
-            )
+        if isinstance(tabular, pd.DataFrame):
+            self.model = build_df_model(tabular)
 
-        self.hidden_sizes = iterable_to_list(self.hidden_sizes)
-
-        layers = []
-
-        in_size = self.input_size
-
-        # TODO: abstract layer generation logic
-        for i, (_hidden_size, _activation_function) in enumerate(zip(self.hidden_sizes, self.activation_functions)):
-            layers.append(nn.Linear(in_size, _hidden_size))
-            layers.append(_activation_function)
-
-            # sets in_size to the current hidden_size
-            # effectively shifts the input size for the next layer
-            in_size = _hidden_size
-
-        layers.append(nn.Linear(self.hidden_sizes[-1], self.output_size))
-
-        self.model = nn.Sequential(*layers)
+        if tabular is None:
+            self.model = build_norm_model(input_size, output_size, hidden_sizes, activation_functions)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
 
