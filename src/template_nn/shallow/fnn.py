@@ -30,7 +30,8 @@ class F_NN(nn.Module):
     """
 
     @overload
-    def __init__(self, tabular: dict | pd.DataFrame | None = None, *args, **kwargs) -> None:
+    def __init__(self, tabular: dict | pd.DataFrame | None = None,
+                 visualise: bool = False, ) -> None:
         ...
 
     @overload
@@ -38,7 +39,8 @@ class F_NN(nn.Module):
                  input_size: int | None = None,
                  output_size: int | None = None,
                  hidden_sizes: Iterable[int] | None = None,
-                 activation_functions: list[callable] | None = None):
+                 activation_functions: Iterable[nn.Module] | None = None,
+                 visualise: bool = False, ):
         ...
 
     def __init__(self,
@@ -46,26 +48,33 @@ class F_NN(nn.Module):
                  output_size: int | None = None,
                  hidden_sizes: Iterable[int] | None = None,
                  tabular: dict | pd.DataFrame | None = None,
-                 activation_functions: list[callable] | None = None) -> None:
+                 activation_functions: Iterable[nn.Module] | None = None,
+                 visualise: bool = False) -> None:
 
         """
-        Initialises the neural network with parameters:
-        :param input_size: int
-        :param output_size: int
-        :param hidden_sizes: Iterable[int]
-        :param activation_functions: list[callable]
+        The 3 required initializer arguments are `input_size`, `output_size`, and `hidden_sizes`.
+        :param input_size: The number of input features for the model.
+        :param output_size: The number of output features for the model.
+        :param hidden_sizes: A collection of hidden layer node count of the model.
+        :param tabular: An optional input accepting both a dictionary or a pandas.DataFrame object.
+        :param activation_functions: An optional collection of activation functions for the model.
+        :param visualise: A toggle switch to visualize the model. OFF(False) by default.
         """
 
         super(F_NN, self).__init__()
 
-        if isinstance(tabular, dict):
-            self.model = build_dict_model(tabular)
+        match tabular:
+            case dict():
+                self.model = build_dict_model(tabular)
 
-        if isinstance(tabular, pd.DataFrame):
-            self.model = build_df_model(tabular)
+            case pd.DataFrame():
+                self.model = build_df_model(tabular)
 
-        if tabular is None:
-            self.model = build_norm_model(input_size, output_size, hidden_sizes, activation_functions)
+            case _:
+                self.model = build_norm_model(input_size, output_size, hidden_sizes, activation_functions)
+
+        if visualise:
+            print(self)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
 
