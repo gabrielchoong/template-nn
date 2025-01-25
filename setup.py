@@ -7,6 +7,7 @@ setup(
     package_dir={"": "src"},
     install_requires=[
         'torch>=2.5.0',
+        'pandas',
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
