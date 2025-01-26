@@ -6,7 +6,7 @@ import torch.nn as nn
 
 def validate_args(input_size: int,
                   output_size: int,
-                  hidden_sizes: Sized,
+                  hidden_sizes: Iterable[int],
                   activation_functions: Iterable[nn.Module]
                   ) -> tuple[int, int, Sized, Iterable[nn.Module]]:
     """

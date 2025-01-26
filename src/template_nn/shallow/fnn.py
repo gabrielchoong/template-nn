@@ -4,24 +4,24 @@ import pandas as pd
 import torch
 import torch.nn as nn
 
-from template_nn.utils.model_compose import build_dict_model, build_df_model, build_norm_model
+from template_nn.utils.model_compose import build_norm_model, build_tabular_model
 
 
 class F_NN(nn.Module):
     """
     A Feedforward Neural Network (F_NN) model for supervised learning.
 
-    The model learns the parameter \(\\beta\) based on input features \(X\) and corresponding output labels.
+    The model learns the parameter (beta) based on input features (X) and corresponding output labels.
 
     Mathematical Formulation:
-        - Hidden layer activation: \( H = f(WX + B) \)
-        - Output layer prediction: \( y = H \\beta + \sigma \)
+        - Hidden layer activation: ( H = f(WX + B) )
+        - Output layer prediction: ( y = H beta + sigma )
 
-    The parameters learned during training are denoted by \(\\beta\), while \(\sigma\) represents the noise term (or error).
+    The parameters learned during training are denoted by (beta), while (sigma) represents the noise term (or error).
 
     The objective function for training is the Mean Squared Error (MSE) between the predicted output and actual labels:
-        - \( J = \\arg\min(E) \)
-        - \( E = \\text{MSE}(\\beta) \)
+        - ( J = argmin(E) )
+        - ( E = MSE(beta) )
 
     References:
         - Suganthan, P. N., & Katuwal, R. (2021). On the origins of randomization-based feedforward neural networks.
@@ -31,7 +31,7 @@ class F_NN(nn.Module):
 
     @overload
     def __init__(self, tabular: dict | pd.DataFrame | None = None,
-                 visualise: bool = False, ) -> None:
+                 visualise: bool = False) -> None:
         ...
 
     @overload
@@ -40,7 +40,7 @@ class F_NN(nn.Module):
                  output_size: int | None = None,
                  hidden_sizes: Iterable[int] | None = None,
                  activation_functions: Iterable[nn.Module] | None = None,
-                 visualise: bool = False, ):
+                 visualise: bool = False):
         ...
 
     def __init__(self,
@@ -63,15 +63,10 @@ class F_NN(nn.Module):
 
         super(F_NN, self).__init__()
 
-        match tabular:
-            case dict():
-                self.model = build_dict_model(tabular)
-
-            case pd.DataFrame():
-                self.model = build_df_model(tabular)
-
-            case _:
-                self.model = build_norm_model(input_size, output_size, hidden_sizes, activation_functions)
+        if tabular is not None:
+            self.model = build_tabular_model(tabular)
+        else:
+            self.model = build_norm_model(input_size, output_size, hidden_sizes, activation_functions)
 
         if visualise:
             print(self)
