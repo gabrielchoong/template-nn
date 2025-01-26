@@ -36,17 +36,17 @@ class F_NN(nn.Module):
 
     @overload
     def __init__(self,
-                 input_size: int | None = None,
-                 output_size: int | None = None,
-                 hidden_sizes: Iterable[int] | None = None,
+                 input_size: int = None,
+                 output_size: int = None,
+                 hidden_sizes: Iterable[int] | int = None,
                  activation_functions: Iterable[nn.Module] | None = None,
                  visualise: bool = False):
         ...
 
     def __init__(self,
-                 input_size: int | None = None,
-                 output_size: int | None = None,
-                 hidden_sizes: Iterable[int] | None = None,
+                 input_size: int = None,
+                 output_size: int = None,
+                 hidden_sizes: Iterable[int] | int = None,
                  tabular: dict | pd.DataFrame | None = None,
                  activation_functions: Iterable[nn.Module] | None = None,
                  visualise: bool = False) -> None:

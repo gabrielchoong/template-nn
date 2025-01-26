@@ -56,17 +56,17 @@ def warn_hidden_layer(hidden_layer_num: int) -> None:
     However, it is safe to assume a neural network is considered shallow if it has at most 2 hidden layers.
 
     References:
-        - Oladyshkin, S., Praditia, T., Kroeker, I., Mohammadi, F., Nowak, W., & Otte, S. (2023).
-          The deep arbitrary polynomial chaos neural network or how Deep Artificial Neural Networks
-          could benefit from data-driven homogeneous chaos theory. *Neural Networks*, 166, 85–104.
-          https://doi.org/10.1016/j.neunet.2023.06.036
+    1. Oladyshkin, S., Praditia, T., Kroeker, I., Mohammadi, F., Nowak, W., & Otte, S. (2023).
+    The deep arbitrary polynomial chaos neural network or how Deep Artificial Neural Networks
+    could benefit from data-driven homogeneous chaos theory. *Neural Networks*, 166, 85–104.
+    https://doi.org/10.1016/j.neunet.2023.06.036
 
-        - Ross, A., Leroux, N., De Riz, A., Marković, D., Sanz-Hernández, D., Trastoy, J.,
-          Bortolotti, P., Querlioz, D., Martins, L., Benetti, L., Claro, M. S., Anacleto, P.,
-          Schulman, A., Taris, T., Bégueret, J.-B., Saïghi, S., Jenkins, A., Ferreira, R.,
-          Vincent, A. F., … Grollier, J. (2023). Multilayer spintronic neural networks with
-          radiofrequency connections. *Nature Nanotechnology*, 18(11), 1273–1280.
-          https://doi.org/10.1038/s41565-023-01452-w
+    2. Ross, A., Leroux, N., De Riz, A., Marković, D., Sanz-Hernández, D., Trastoy, J.,
+    Bortolotti, P., Querlioz, D., Martins, L., Benetti, L., Claro, M. S., Anacleto, P.,
+    Schulman, A., Taris, T., Bégueret, J.-B., Saïghi, S., Jenkins, A., Ferreira, R.,
+    Vincent, A. F., … Grollier, J. (2023). Multilayer spintronic neural networks with
+    radiofrequency connections. *Nature Nanotechnology*, 18(11), 1273–1280.
+    https://doi.org/10.1038/s41565-023-01452-w
     """
 
     ###############################################################
