@@ -78,7 +78,7 @@ def test_build_dict_model_invalid_keys():
         # Missing "activation_functions" key
     }
 
-    with pytest.raises(ValueError, match="Dictionary must contain keys"):
+    with pytest.raises(ValueError, match="Tabular data must contain keys"):
         F_NN(tabular=invalid_dict)
 
 
@@ -107,5 +107,5 @@ def test_build_df_model_invalid_columns():
         # Missing "activation_functions" column
     })
 
-    with pytest.raises(ValueError, match="DataFrame must contain keys"):
+    with pytest.raises(ValueError, match="Tabular data must contain keys"):
         F_NN(tabular=invalid_df)
