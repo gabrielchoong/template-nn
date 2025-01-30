@@ -1,10 +1,8 @@
 import warnings
-from typing import Iterable, Sized, List
+from typing import Sized, List
 
 import numpy as np
 import pandas as pd
-from torch import nn
-from typing_extensions import deprecated
 
 
 def keys_val(tabular: dict | pd.DataFrame, _keys: tuple) -> None:

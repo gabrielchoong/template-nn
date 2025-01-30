@@ -4,8 +4,8 @@
 
 import random
 import time
+from typing import Tuple
 
-import numpy as np
 import pandas as pd
 
 from template_nn.utils.hho_operations import exploration, exploitation
@@ -25,8 +25,7 @@ class HHO:
 
     def __init__(self, tabular: dict | pd.DataFrame) -> None:
         """
-
-        :param tabular:
+        :param tabular: A dict or pd.DataFrame input
         """
 
         keys = ("objective_function", "lower_bound", "upper_bound", "dimension", "search_agents_num", "max_iterations")
@@ -34,7 +33,7 @@ class HHO:
         self.objective_function, self.lower_bound, self.upper_bound, self.dimension, self.search_agents_num, self.max_iterations = \
             get_params(tabular, keys)
 
-    def _initialise(self):
+    def _initialise(self) -> Tuple:
 
         # --- Initialisation / Preparation Phase ---
         # ensure lower and upper bound are of correct dimension
@@ -60,28 +59,9 @@ class HHO:
         rabbit_location = np.zeros(self.dimension)
         rabbit_energy = float("inf")
         convergence_curve = np.zeros(self.max_iterations)
-        fitness = 0
+        fitness = self.objective_function(Hawks)
 
         return Hawks, rabbit_location, rabbit_energy, convergence_curve, fitness
-
-    def _evaluate_fitness(self, Hawks, rabbit_location, rabbit_energy, fitness):
-        for i in range(0, self.search_agents_num):
-
-            # check boundaries
-            Hawks[i, :] = np.clip(
-                Hawks[i, :],
-                self.lower_bound,
-                self.upper_bound
-            )
-
-            # fitness of locations
-            fitness = self.objective_function(Hawks[i, :])
-
-            if fitness < rabbit_energy:
-                rabbit_energy = fitness
-                rabbit_location = Hawks[i, :].copy()
-
-        return Hawks, rabbit_location, rabbit_energy, fitness
 
     def optimise(self) -> Solution:
         """
@@ -100,7 +80,21 @@ class HHO:
 
         for t in range(self.max_iterations):
 
-            Hawks, rabbit_energy, rabbit_location, fitness = self._evaluate_fitness(Hawks, rabbit_location, rabbit_energy, fitness)
+            for i in range(0, self.search_agents_num):
+
+                # check boundaries
+                Hawks[i, :] = np.clip(
+                    Hawks[i, :],
+                    self.lower_bound,
+                    self.upper_bound
+                )
+
+                # fitness of locations
+                fitness = self.objective_function(Hawks[i, :])
+
+                if fitness < rabbit_energy:
+                    rabbit_energy = fitness
+                    rabbit_location = Hawks[i, :].copy()
 
             E1 = 2 * (1 - (t / self.max_iterations))
 
@@ -135,3 +129,27 @@ class HHO:
         s.bestIndividual = rabbit_location
 
         return s
+
+
+if __name__ == "__main__":
+    import numpy as np
+    import math
+
+
+    def F1(x):
+        o = sum(abs(x)) + math.prod(abs(x))
+        return o
+
+
+    config = {
+            "objective_function": F1,
+            "lower_bound": -100,
+            "upper_bound": 100,
+            "dimension": 100,
+            "search_agents_num": 100,
+            "max_iterations": 100,
+        }
+
+    hho = HHO(config)
+
+    hho.optimise()
