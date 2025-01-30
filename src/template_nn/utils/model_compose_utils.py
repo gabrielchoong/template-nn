@@ -1,10 +1,10 @@
 import warnings
 from typing import Iterable, Sized, List
 
+import numpy as np
 import pandas as pd
 from torch import nn
-
-keys = ("input_size", "output_size", "hidden_sizes", "activation_functions")
+from typing_extensions import deprecated
 
 
 def keys_val(tabular: dict | pd.DataFrame, _keys: tuple) -> None:
@@ -17,33 +17,34 @@ def keys_val(tabular: dict | pd.DataFrame, _keys: tuple) -> None:
         raise ValueError(f"Tabular data must contain keys {_keys}")
 
 
-def get_params(tabular: dict | pd.DataFrame) -> tuple[int, int, Iterable[int], Iterable[nn.Module]]:
+def get_params(tabular: dict | pd.DataFrame, keys: tuple) -> tuple:
     """
     Destructures a tabular input.
+    :param keys: A tuple containing keys for specific use case.
     :param tabular: A dict or pd.DataFrame input.
-    :return: A tuple containing (int, int, Sized, Iterable[nn.Module]).
-    Unpack the values in the order of: input_size, output_size, hidden_sizes, activation_function
+    :return: A tuple containing values relevant to the `keys` list.
     """
-
-    input_size = output_size = hidden_sizes = activation_functions = None
+    params = []
 
     keys_val(tabular, keys)
 
     if isinstance(tabular, dict):
-        # unpack values from dictionary
-        input_size, output_size = tabular["input_size"], tabular["output_size"]
 
-        hidden_sizes, activation_functions = tabular["hidden_sizes"], tabular["activation_functions"]
+        for key in keys:
+            params.append(tabular[key])
 
     if isinstance(tabular, pd.DataFrame):
-        # pandas.DataFrame uses `numpy.int64` by default
-        # Call the `.item()` method to convert it back to `int`
-        input_size, output_size = tabular["input_size"].iloc[0].item(), tabular["output_size"].iloc[0].item()
 
-        # list-like objects don't need to be converted
-        hidden_sizes, activation_functions = tabular["hidden_sizes"].iloc[0], tabular["activation_functions"].iloc[0]
+        for key in keys:
 
-    return input_size, output_size, hidden_sizes, activation_functions
+            value = tabular[key].iloc[0]
+
+            if isinstance(value, np.integer):
+                params.append(value.item())
+            else:
+                params.append(value)
+
+    return tuple(params)
 
 
 def warn_hidden_layer(hidden_layer_num: int) -> None:
