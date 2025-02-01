@@ -6,6 +6,7 @@ import random
 import time
 from typing import Tuple
 
+import numpy as np
 import pandas as pd
 
 from template_nn.utils.hho_operations import exploration, exploitation
@@ -129,27 +130,3 @@ class HHO:
         s.bestIndividual = rabbit_location
 
         return s
-
-
-if __name__ == "__main__":
-    import numpy as np
-    import math
-
-
-    def F1(x):
-        o = sum(abs(x)) + math.prod(abs(x))
-        return o
-
-
-    config = {
-            "objective_function": F1,
-            "lower_bound": -100,
-            "upper_bound": 100,
-            "dimension": 100,
-            "search_agents_num": 100,
-            "max_iterations": 100,
-        }
-
-    hho = HHO(config)
-
-    hho.optimise()
