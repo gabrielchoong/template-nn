@@ -43,7 +43,9 @@ def build_tabular_model(tabular: dict | pd.DataFrame) -> nn.Sequential:
     :return: A torch.nn.Sequential object representing the layers.
     """
 
-    input_size, output_size, hidden_sizes, activation_functions = get_params(tabular)
+    keys = ("input_size", "output_size", "hidden_sizes", "activation_functions")
+
+    input_size, output_size, hidden_sizes, activation_functions = get_params(tabular, keys)
 
     return build_model(input_size, output_size, hidden_sizes, activation_functions)
 
