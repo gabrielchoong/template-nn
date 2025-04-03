@@ -1,6 +1,6 @@
 import pytest
 from unittest.mock import patch
-from template_nn.utils.gpu import get_gpu_device
+from template_nn.gpu import get_gpu_device
 
 
 @pytest.mark.parametrize("cuda_available, mps_built, expected_device", [
