@@ -45,7 +45,7 @@ Contributions are welcomed! Please see [Contributions](CONTRIBUTING.md) for info
 
 ### Contributors
 
-This project is currently being developed by [Gabriel](https://github.com/gabrielchoong) and [Benjamin](https://github.com/Ben1001409).
+This project is currently being developed by [Gabriel](https://github.com/gabrielchoong).
 
 ## License
 
