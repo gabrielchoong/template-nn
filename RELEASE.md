@@ -2,6 +2,13 @@
 
 ## Alpha
 
+### 0.1.3
+
+- Added `optimisers.hho`: Optimise an objective function based on the Harris' Hawks Optimiser algorithm.
+- Added `utils.solution`, `utils.hho_operations` and `utils.levy`: Helper function for the `HHO` class.
+- Changed how dictionary keys are handled in `utils.model_compose_utils.get_params`.
+- Temporarily added keys tuple in `utils.model_compose.build_tabular_model`.
+
 ### 0.1.2
 
 - Updated `utils.args_val.validate_args` to perform additional checks.
