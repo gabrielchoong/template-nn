@@ -2,6 +2,12 @@
 
 ## Alpha
 
+### 0.1.4
+
+**Breaking Changes (dev only)**:
+- Moved `utils.gpu.gpu.get_gpu_device` to `utils.gpu.get_gpu_device`.
+- Added a new `keys` argument in `utils.model_compose.build_tabular_model` (required if you're calling this directly or have overriden internals).
+
 ### 0.1.3
 
 - Added `optimisers.hho`: Optimise an objective function based on the Harris' Hawks Optimiser algorithm.

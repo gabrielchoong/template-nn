@@ -1,4 +1,5 @@
 from typing import Iterable, overload
+import warnings
 
 import pandas as pd
 import torch
@@ -67,6 +68,11 @@ class F_NN(nn.Module):
         if tabular is not None:
             self.model = build_tabular_model(tabular, FNN_KEYS)
         else:
+            warnings.warn(
+            "Direct use of input_size/output_size/hidden_sizes is deprecated and will be removed in a future version. "
+            "Use the 'tabular' argument with a dictionary or DataFrame instead.",
+            DeprecationWarning
+        )
             self.model = build_norm_model(input_size, output_size, hidden_sizes, activation_functions)
 
         if visualise:
