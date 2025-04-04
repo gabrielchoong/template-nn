@@ -36,14 +36,12 @@ def build_model(input_size: int,
     return model
 
 
-def build_tabular_model(tabular: dict | pd.DataFrame) -> nn.Sequential:
+def build_tabular_model(tabular: dict | pd.DataFrame, keys: tuple) -> nn.Sequential:
     """
     Must contain keys of: ("input_size", "output_size", "hidden_sizes", "activation_functions")
     :param tabular: A dict or pandas DataFrame representing the tabular data.
     :return: A torch.nn.Sequential object representing the layers.
     """
-
-    keys = ("input_size", "output_size", "hidden_sizes", "activation_functions")
 
     input_size, output_size, hidden_sizes, activation_functions = get_params(tabular, keys)
 

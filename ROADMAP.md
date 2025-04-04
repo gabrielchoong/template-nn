@@ -72,7 +72,7 @@ libraries.
 | **Cuckoo Search**                      | Inspired by the parasitic behavior of cuckoo birds, where the optimiser exploits randomness and greediness to find optimal solutions.                                           | Planned |
 | **Genetic Algorithm (GA)**             | Mimics the process of natural selection, using crossover and mutation to evolve better solutions over generations.                                                              | Planned |
 | **Grey Wolf Optimisation (GWO)**       | Inspired by the hunting behavior of grey wolves, this optimiser simulates the social hierarchy and leadership dynamics within a pack to guide the search for optimal solutions. | Planned |
-| **Harris Hawk Optimiser (HHO)**        | Mimics the cooperative hunting behavior of Harris hawks, where individuals switch between exploration and exploitation during the search process.                               | Planned |
+| **Harris Hawk Optimiser (HHO)**        | Mimics the cooperative hunting behavior of Harris hawks, where individuals switch between exploration and exploitation during the search process.                               | Completed |
 | **Particle Swarm Optimisation (PSO)**  | Inspired by the social behavior of birds flocking or fish schooling, this optimiser uses a population of candidate solutions to explore the search space.                       | Planned |
 | **Whale Optimisation Algorithm (WOA)** | Based on the bubble-net hunting strategy of humpback whales, this optimiser uses exploration and exploitation strategies to find global optima.                                 | Planned |
 

@@ -4,6 +4,7 @@ import pandas as pd
 import torch
 import torch.nn as nn
 
+from template_nn.utils.model_keys import FNN_KEYS
 from template_nn.utils.model_compose import build_norm_model, build_tabular_model
 
 
@@ -64,7 +65,7 @@ class F_NN(nn.Module):
         super(F_NN, self).__init__()
 
         if tabular is not None:
-            self.model = build_tabular_model(tabular)
+            self.model = build_tabular_model(tabular, FNN_KEYS)
         else:
             self.model = build_norm_model(input_size, output_size, hidden_sizes, activation_functions)
 
