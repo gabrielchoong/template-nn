@@ -1,11 +1,11 @@
-from typing import List, Iterable
+from typing import List, Iterable, Sized
 
 from torch import nn
 
 
 def create_layers(input_size: int,
                   output_size: int,
-                  hidden_sizes: List[int],
+                  hidden_sizes: List[int] | Sized,
                   activation_functions: Iterable[nn.Module]) -> list[nn.Module]:
     """
     A function to generate layers dynamically.

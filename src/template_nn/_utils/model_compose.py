@@ -1,16 +1,16 @@
-from typing import Iterable
+from typing import Iterable, Sized
 
+import numpy as np
 import pandas as pd
 import torch.nn as nn
 
-from template_nn._utils.args_val import validate_args
-from template_nn._utils.layer_gen import create_layers
-from template_nn._utils.model_compose_utils import get_params, sized_to_list
+from .._utils.args_val import validate_args
+from .._utils.layer_gen import create_layers
 
 
 def build_model(input_size: int,
                 output_size: int,
-                hidden_sizes: Iterable[int],
+                hidden_sizes: Iterable[int] | Sized,
                 activation_functions: Iterable[nn.Module]) -> nn.Sequential:
     """
     A procedural function declaring the steps of building a model.
@@ -22,44 +22,39 @@ def build_model(input_size: int,
     """
 
     # missing arguments will result in errors that are hard to debug
-    input_size, output_size, hidden_sizes, activation_functions \
-        = validate_args(input_size, output_size, hidden_sizes, activation_functions)
+    validate_args(input_size, output_size, hidden_sizes, activation_functions)
 
-    # remove warning since users should be able
-    # to decide their own network topology
-    # warn_hidden_layer(len(hidden_sizes))
+    return nn.Sequential(*create_layers(input_size, output_size, hidden_sizes, activation_functions))
 
-    hidden_sizes = sized_to_list(hidden_sizes)
-
-    layers = create_layers(input_size, output_size, hidden_sizes, activation_functions)
-
-    model = nn.Sequential(*layers)
-
-    return model
-
-
-def build_tabular_model(tabular: dict | pd.DataFrame, keys: tuple) -> nn.Sequential:
+def get_params(tabular: dict | pd.DataFrame, keys: tuple) -> list:
     """
-    Must contain keys of: ("input_size", "output_size", "hidden_sizes", "activation_functions")
-    :param tabular: A dict or pandas DataFrame representing the tabular data.
-    :param keys: The keys of the tabular.
-    :return: A torch.nn.Sequential object representing the layers.
+    Destructures a tabular input.
+    :param keys: A tuple containing keys for specific use case.
+    :param tabular: A dict or pd.DataFrame input.
+    :return: A tuple containing values relevant to the `keys` list.
     """
 
-    input_size, output_size, hidden_sizes, activation_functions = get_params(tabular, keys)
+    is_valid_keys(tabular, keys)
 
-    return build_model(input_size, output_size, hidden_sizes, activation_functions)
+    return is_dict(tabular, keys) if isinstance(tabular, dict) else is_df(tabular, keys)
 
+def is_valid_keys(tabular: dict | pd.DataFrame, keys: tuple) -> None:
+    if not all(key in tabular for key in keys):
+        raise ValueError(f"Tabular data must contain keys {keys}")
 
-def build_norm_model(input_size: int,
-                     output_size: int,
-                     hidden_sizes: Iterable[int],
-                     activation_functions: Iterable[nn.Module]) -> nn.Sequential:
-    """
-    :param input_size: The number of input features.
-    :param output_size: The number of output features.
-    :param hidden_sizes: The number of nodes in each hidden layer.
-    :param activation_functions: The activation functions to use.
-    :return: A torch.nn.Sequential object representing the layers.
-    """
-    return build_model(input_size, output_size, hidden_sizes, activation_functions)
+def is_dict(tabular: dict | pd.DataFrame, keys: tuple) -> list:
+    params = []
+    for key in keys:
+        params.append(tabular[key])
+    return params
+
+def is_df(tabular: dict | pd.DataFrame, keys: tuple) -> list:
+    params = []
+    for key in keys:
+        value = tabular[key].iloc[0]
+
+        if isinstance(value, np.integer):
+            params.append(value.item())
+        else:
+            params.append(value)
+    return params

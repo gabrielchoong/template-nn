@@ -1,15 +1,16 @@
-from typing import Iterable, overload
 import warnings
+from typing import Iterable, overload
 
 import pandas as pd
 import torch
 import torch.nn as nn
 
-from .._utils.model_keys import FNN_KEYS
-from .._utils.model_compose import build_norm_model, build_tabular_model
+from .base_network import BaseNetwork
+from .._utils.model_compose import build_model, get_params
+from .._utils.model_keys import MODEL_KEYS
 
 
-class FNN(nn.Module):
+class FNN(BaseNetwork):
     """
     A Feedforward Neural Network (F_NN) model for supervised learning.
 
@@ -66,17 +67,17 @@ class FNN(nn.Module):
         super(FNN, self).__init__()
 
         if tabular is not None:
-            self.model = build_tabular_model(tabular, FNN_KEYS)
+            self.model = build_model(*get_params(tabular, MODEL_KEYS["FNN"]))
         else:
             warnings.warn(
-                "Direct use of input_size/output_size/hidden_sizes is deprecated and will be removed in a future version. "
-                "Use the 'tabular' argument with a dictionary or DataFrame instead.",
-                DeprecationWarning
+                "Direct use of input_size/output_size/hidden_sizes is deprecated and will be removed in version 0.1.6."
+                "Pass in a dictionary or DataFrame directly instead.",
+                DeprecationWarning,
+                stacklevel=2
             )
-            self.model = build_norm_model(input_size, output_size, hidden_sizes, activation_functions)
+            self.model = build_model(input_size, output_size, hidden_sizes, activation_functions)
 
-        if visualise:
-            print(self)
+        print(self) if visualise else None
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
 

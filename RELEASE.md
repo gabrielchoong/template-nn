@@ -5,8 +5,10 @@
 ### 0.1.4
 
 **Breaking Changes (dev only)**:
+
 - Moved `utils.gpu.gpu.get_gpu_device` to `utils.gpu.get_gpu_device`.
-- Added a new `keys` argument in `utils.model_compose.build_tabular_model` (required if you're calling this directly or have overriden internals).
+- Added a new `keys` argument in `utils.model_compose.build_tabular_model` (required if you're calling this directly or
+  have overriden internals).
 
 ### 0.1.3
 
@@ -30,5 +32,7 @@
 
 ### 0.1.0
 
-- Added `shallow.fnn`: Easily create customisable feedforward neural networks with support for dynamic hidden layer configurations.
-- Added `utils.gpu`: Introduced utility functions for seamless GPU setup and integration, enabling faster computation and streamlined workflows.
+- Added `shallow.fnn`: Easily create customisable feedforward neural networks with support for dynamic hidden layer
+  configurations.
+- Added `utils.gpu`: Introduced utility functions for seamless GPU setup and integration, enabling faster computation
+  and streamlined workflows.
