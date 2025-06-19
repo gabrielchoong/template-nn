@@ -9,9 +9,9 @@ from typing import Tuple
 import numpy as np
 import pandas as pd
 
-from template_nn.utils.hho_operations import exploration, exploitation
-from template_nn.utils.model_compose_utils import get_params
-from template_nn.utils.solution import Solution
+from template_nn._utils.hho_operations import exploration, exploitation
+from template_nn._utils.model_compose_utils import get_params
+from template_nn._utils.solution import Solution
 
 
 class HHO:

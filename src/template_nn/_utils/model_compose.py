@@ -3,9 +3,9 @@ from typing import Iterable
 import pandas as pd
 import torch.nn as nn
 
-from template_nn.utils.args_val import validate_args
-from template_nn.utils.layer_gen import create_layers
-from template_nn.utils.model_compose_utils import get_params, warn_hidden_layer, sized_to_list
+from template_nn._utils.args_val import validate_args
+from template_nn._utils.layer_gen import create_layers
+from template_nn._utils.model_compose_utils import get_params, sized_to_list
 
 
 def build_model(input_size: int,
@@ -25,7 +25,9 @@ def build_model(input_size: int,
     input_size, output_size, hidden_sizes, activation_functions \
         = validate_args(input_size, output_size, hidden_sizes, activation_functions)
 
-    warn_hidden_layer(len(hidden_sizes))
+    # remove warning since users should be able
+    # to decide their own network topology
+    # warn_hidden_layer(len(hidden_sizes))
 
     hidden_sizes = sized_to_list(hidden_sizes)
 
@@ -40,6 +42,7 @@ def build_tabular_model(tabular: dict | pd.DataFrame, keys: tuple) -> nn.Sequent
     """
     Must contain keys of: ("input_size", "output_size", "hidden_sizes", "activation_functions")
     :param tabular: A dict or pandas DataFrame representing the tabular data.
+    :param keys: The keys of the tabular.
     :return: A torch.nn.Sequential object representing the layers.
     """
 

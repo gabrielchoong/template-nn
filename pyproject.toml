@@ -4,9 +4,9 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "template-nn"
-version = "0.1.4.dev0"
+version = "0.1.4.dev1"
 authors = [
-    { name = "Gabriel Choong Ge Liang", email = "gabrielchoonggeliang@gmail.com"}
+    { name = "Gabriel Choong Ge Liang", email = "gabrielchoonggeliang@gmail.com" }
 ]
 description = "A neural network model architecture template"
 readme = "README.md"
@@ -16,7 +16,7 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
-license = { text = "MIT"}
+license = { text = "MIT" }
 
 [project.urls]
 Homepage = "https://github.com/gabrielchoong/template-nn"

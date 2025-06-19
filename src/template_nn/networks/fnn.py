@@ -5,11 +5,11 @@ import pandas as pd
 import torch
 import torch.nn as nn
 
-from template_nn.utils.model_keys import FNN_KEYS
-from template_nn.utils.model_compose import build_norm_model, build_tabular_model
+from .._utils.model_keys import FNN_KEYS
+from .._utils.model_compose import build_norm_model, build_tabular_model
 
 
-class F_NN(nn.Module):
+class FNN(nn.Module):
     """
     A Feedforward Neural Network (F_NN) model for supervised learning.
 
@@ -63,16 +63,16 @@ class F_NN(nn.Module):
         :param visualise: A toggle switch to visualize the model. OFF(False) by default.
         """
 
-        super(F_NN, self).__init__()
+        super(FNN, self).__init__()
 
         if tabular is not None:
             self.model = build_tabular_model(tabular, FNN_KEYS)
         else:
             warnings.warn(
-            "Direct use of input_size/output_size/hidden_sizes is deprecated and will be removed in a future version. "
-            "Use the 'tabular' argument with a dictionary or DataFrame instead.",
-            DeprecationWarning
-        )
+                "Direct use of input_size/output_size/hidden_sizes is deprecated and will be removed in a future version. "
+                "Use the 'tabular' argument with a dictionary or DataFrame instead.",
+                DeprecationWarning
+            )
             self.model = build_norm_model(input_size, output_size, hidden_sizes, activation_functions)
 
         if visualise:

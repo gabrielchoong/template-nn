@@ -3,7 +3,7 @@ import random
 
 import numpy as np
 
-from template_nn.utils.levy import Levy
+from template_nn._utils.levy import Levy
 
 
 def exploration(i,

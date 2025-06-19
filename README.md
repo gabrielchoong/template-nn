@@ -1,5 +1,7 @@
 # Template NN
-Template NN is a lightweight, easy-to-use template built to streamline neural network prototyping. At its core, it leverages the power of [PyTorch](https://github.com/pytorch/pytorch).
+
+Template NN is a lightweight, easy-to-use template built to streamline neural network prototyping. At its core, it
+leverages the power of [PyTorch](https://github.com/pytorch/pytorch).
 
 Huge thanks to the PyTorch team for enabling projects like this.
 
@@ -19,27 +21,30 @@ cd template-nn
 pip install -r requirements.txt
 pip install .
 ```
-    
+
 ## Documentation
 
-For detailed documentation, including usage instructions and examples, visit the online documentation at [Documentation](https://gabrielchoong.github.io/template-nn).
+For detailed documentation, including usage instructions and examples, visit the online documentation
+at [Documentation](https://gabrielchoong.github.io/template-nn).
 
 ### Feature Preview
 
 For more information on how to use this project, see [Examples](EXAMPLES.md).
 
 ```python
-from template_nn.shallow.fnn import F_NN
+from template_nn.networks.fnn import FNN
 
-model = F_NN(input_size=10, output_size=5, hidden_sizes=5)
+model = FNN(input_size=10, output_size=5, hidden_sizes=5)
 # model = F_NN(input_size=10, output_size=5, hidden_sizes=[8, 6])
 ```
 
 ## Releases and Contributing
 
-**This project is currently in its alpha stage**. Please [file an issue](https://github.com/gabrielchoong/template-nn/issues) if you found a bug.
+**This project is currently in its alpha stage**.
+Please [file an issue](https://github.com/gabrielchoong/template-nn/issues) if you found a bug.
 
-To read about the motive and direction of this project, see [Roadmap](ROADMAP.md). To read more about the current releases, see [Release Notes](RELEASE.md).
+To read about the motive and direction of this project, see [Roadmap](ROADMAP.md). To read more about the current
+releases, see [Release Notes](RELEASE.md).
 
 Contributions are welcomed! Please see [Contributions](CONTRIBUTING.md) for information on contributing.
 

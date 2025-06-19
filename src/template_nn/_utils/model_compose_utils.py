@@ -52,7 +52,7 @@ def warn_hidden_layer(hidden_layer_num: int) -> None:
 
     Conventionally, a neural network is considered deep if it has at least two hidden layers.
     Others specify a four-hidden-layer neural network is considered deep.
-    However, it is safe to assume a neural network is considered shallow if it has at most 2 hidden layers.
+    However, it is safe to assume a neural network is considered networks if it has at most 2 hidden layers.
 
     References:
     1. Oladyshkin, S., Praditia, T., Kroeker, I., Mohammadi, F., Nowak, W., & Otte, S. (2023).
@@ -83,7 +83,7 @@ def warn_hidden_layer(hidden_layer_num: int) -> None:
     else:
         warnings.warn(
             "*** Shallow Neural Network Detected ***\n"
-            "A shallow neural network (<= 2 hidden layers) is being used.\n\n"
+            "A networks neural network (<= 2 hidden layers) is being used.\n\n"
             "If you need more complexity or better performance, consider\n"
             "switching to a deeper architecture (>= 3 hidden layers).\n",
             UserWarning

@@ -2,7 +2,7 @@ import pandas as pd
 import pytest
 import torch
 
-from template_nn.shallow.fnn import F_NN
+from template_nn import FNN
 
 
 @pytest.mark.parametrize("input_size, expected_output_shape", [
@@ -12,7 +12,7 @@ from template_nn.shallow.fnn import F_NN
 ])
 def test_variable_input_size_shallow(input_size, expected_output_shape):
     # input_size - 5 - 2 Neural Network
-    model = F_NN(input_size, output_size=2, hidden_sizes=[5])
+    model = FNN(input_size, output_size=2, hidden_sizes=[5])
 
     x = torch.randn(1, input_size)
 
@@ -28,7 +28,7 @@ def test_variable_input_size_shallow(input_size, expected_output_shape):
 ])
 def test_variable_input_size_deep(input_size, expected_output_shape):
     # input_size - 5 - 2 Neural Network
-    model = F_NN(input_size, output_size=2, hidden_sizes=[5 for _ in range(5)])
+    model = FNN(input_size, output_size=2, hidden_sizes=[5 for _ in range(5)])
 
     x = torch.randn(1, input_size)
 
@@ -44,7 +44,7 @@ def test_variable_input_size_deep(input_size, expected_output_shape):
 ])
 def test_none_type_hidden_layer_num(input_size, expected_output_shape):
     # input_size - 5 - 2 Neural Network
-    model = F_NN(input_size=input_size, output_size=2, hidden_sizes=[5])
+    model = FNN(input_size=input_size, output_size=2, hidden_sizes=[5])
 
     x = torch.randn(1, input_size)
 
@@ -62,7 +62,7 @@ def test_build_dict_model_valid():
         "activation_functions": [torch.nn.ReLU()]
     }
 
-    model = F_NN(tabular=valid_dict)
+    model = FNN(tabular=valid_dict)
     x = torch.randn(1, valid_dict["input_size"])
     output = model(x)
 
@@ -79,7 +79,7 @@ def test_build_dict_model_invalid_keys():
     }
 
     with pytest.raises(ValueError, match="Tabular data must contain keys"):
-        F_NN(tabular=invalid_dict)
+        FNN(tabular=invalid_dict)
 
 
 # Testing build_df_model
@@ -91,7 +91,7 @@ def test_build_df_model_valid():
         "activation_functions": [[torch.nn.ReLU()]]
     })
 
-    model = F_NN(tabular=valid_df)
+    model = FNN(tabular=valid_df)
     x = torch.randn(1, valid_df["input_size"].item())
     output = model(x)
 
@@ -108,4 +108,4 @@ def test_build_df_model_invalid_columns():
     })
 
     with pytest.raises(ValueError, match="Tabular data must contain keys"):
-        F_NN(tabular=invalid_df)
+        FNN(tabular=invalid_df)
