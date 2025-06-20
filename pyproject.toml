@@ -5,6 +5,11 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "template-nn"
 version = "0.1.4.dev1"
+dependencies = [
+    "torch>=2.5.0",
+    "pandas>=1.0.0",
+    "numpy>=1.18.0"
+]
 authors = [
     { name = "Gabriel Choong Ge Liang", email = "gabrielchoonggeliang@gmail.com" }
 ]

@@ -1,6 +1,6 @@
 torch>=2.5.0
 setuptools>=75.1.0
 pytest>=8.3.4
-pandas
-numpy
+pandas>=1.0.0
+numpy>=1.18.0
 pdoc>=15.0.1
