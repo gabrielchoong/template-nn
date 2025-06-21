@@ -2,13 +2,14 @@ from setuptools import setup, find_packages
 
 setup(
     name="template-nn",
-    version="0.1.3",
+    version="0.1.4",
     packages=find_packages(where="src"),
     package_dir={"": "src"},
     install_requires=[
-        'torch>=2.5.0',
-        'pandas',
-        'numpy',
+        "torch>=2.6.0",
+        "pandas>=1.0.0",
+        "numpy>=1.18.0",
+        "mealpy>=3.0.2",
     ],
     classifiers=[
         "Programming Language :: Python :: 3",

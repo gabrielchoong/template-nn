@@ -3,9 +3,9 @@ import pytest
 import test_functions
 from template_nn.optimisers.hho import HHO
 
+
 @pytest.fixture
 def setup_hho():
-
     func_details = test_functions.getFunctionDetails(0)
 
     config = {
@@ -22,7 +22,6 @@ def setup_hho():
 
 
 def test_hho_initialisation(setup_hho):
-
     hho = setup_hho
 
     assert hho.objective_function == getattr(test_functions, "F1")

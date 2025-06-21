@@ -5,13 +5,14 @@
 import random
 import time
 from typing import Tuple
+import warnings
 
 import numpy as np
 import pandas as pd
 
-from template_nn.utils.hho_operations import exploration, exploitation
-from template_nn.utils.model_compose_utils import get_params
-from template_nn.utils.solution import Solution
+from .._utils.hho_operations import exploration, exploitation
+from .._utils.model_compose import get_params
+from .._utils.solution import Solution
 
 
 class HHO:
@@ -25,6 +26,11 @@ class HHO:
     """
 
     def __init__(self, tabular: dict | pd.DataFrame) -> None:
+        warnings.warn(
+            "The HHO optimiser is experimental and is deprecated as of version 0.1.4 and will be removed in 0.1.6.",
+            DeprecationWarning,
+            stacklevel=2
+        )
         """
         :param tabular: A dict or pd.DataFrame input
         """

@@ -14,9 +14,9 @@
 You can create a simple feedforward neural network like this:
 
 ```python
-from template_nn.shallow.fnn import F_NN
+from template_nn.networks.fnn import FNN
 
-model = F_NN(
+model = FNN(
     input_size=12,
     output_size=4,
     hidden_sizes=[10, 7]
@@ -28,7 +28,7 @@ model = F_NN(
 Alternatively, define the configuration as a dictionary:
 
 ```python
-from template_nn.shallow.fnn import F_NN
+from template_nn.networks.fnn import FNN
 
 config = {
     "input_size": 12,
@@ -36,7 +36,7 @@ config = {
     "hidden_sizes": [10, 7]
 }
 
-model = F_NN(tabular=config)
+model = FNN(tabular=config)
 ```
 
 #### 3. Define Model Using a DataFrame
@@ -45,7 +45,7 @@ You can also use a DataFrame for the configuration:
 
 ```python
 import pandas as pd
-from template_nn.shallow.fnn import F_NN
+from template_nn.networks.fnn import FNN
 
 config = pd.DataFrame({
     "input_size": [12],
@@ -53,7 +53,7 @@ config = pd.DataFrame({
     "hidden_sizes": [[10, 7]]  # List as a value
 })
 
-model = F_NN(tabular=config)
+model = FNN(tabular=config)
 ```
 
 #### 4. Use Custom Activation Functions
@@ -62,9 +62,9 @@ The default activation function is `nn.ReLU()`, but you can pass your own, such 
 
 ```python
 import torch.nn as nn
-from template_nn.shallow.fnn import F_NN
+from template_nn.networks.fnn import FNN
 
-model = F_NN(
+model = FNN(
     input_size=12,
     output_size=4,
     hidden_sizes=[10, 7],
@@ -80,9 +80,9 @@ model = F_NN(
 Optionally, you can visualize the model layers:
 
 ```python
-from template_nn.shallow.fnn import F_NN
+from template_nn.networks.fnn import FNN
 
-model = F_NN(
+model = FNN(
     input_size=12,
     output_size=4,
     hidden_sizes=[10, 7],
@@ -111,7 +111,7 @@ F_NN(
 This utility function automatically detects and uses your GPU for training:
 
 ```python
-from template_nn.utils.gpu import get_gpu_device
+from template_nn._utils.gpu import get_gpu_device
 
 gpu = get_gpu_device()
 ```

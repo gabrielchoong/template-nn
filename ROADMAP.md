@@ -37,7 +37,8 @@ the following pattern for the 0.1.x series:
   new optimiser).
 - A *Medium* release builds on the previous one by adding related features (e.g. extra arguments or new ways to use
   existing features).
-- A *Small* release focuses on improving the project through tasks like writing tests, documentation updates, code refactoring, or
+- A *Small* release focuses on improving the project through tasks like writing tests, documentation updates, code
+  refactoring, or
   small improvements without adding significant new functionality.
 
 ## Milestones
@@ -65,16 +66,16 @@ libraries.
 
 **Planned Optimisers**
 
-| Optimiser Name                         | Description                                                                                                                                                                     | Status  |
-|----------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|
-| **Ant Colony Optimisation (ACO)**      | Based on the foraging behavior of ants, this optimiser uses a population of solutions to iteratively improve results through pheromone-based communication.                     | Planned |
-| **Artificial Bee Colony (ABC)**        | Modeled after the foraging behavior of honeybees, this optimiser simulates the search for food sources to find optimal solutions.                                               | Planned |
-| **Cuckoo Search**                      | Inspired by the parasitic behavior of cuckoo birds, where the optimiser exploits randomness and greediness to find optimal solutions.                                           | Planned |
-| **Genetic Algorithm (GA)**             | Mimics the process of natural selection, using crossover and mutation to evolve better solutions over generations.                                                              | Planned |
-| **Grey Wolf Optimisation (GWO)**       | Inspired by the hunting behavior of grey wolves, this optimiser simulates the social hierarchy and leadership dynamics within a pack to guide the search for optimal solutions. | Planned |
-| **Harris Hawk Optimiser (HHO)**        | Mimics the cooperative hunting behavior of Harris hawks, where individuals switch between exploration and exploitation during the search process.                               | Planned |
-| **Particle Swarm Optimisation (PSO)**  | Inspired by the social behavior of birds flocking or fish schooling, this optimiser uses a population of candidate solutions to explore the search space.                       | Planned |
-| **Whale Optimisation Algorithm (WOA)** | Based on the bubble-net hunting strategy of humpback whales, this optimiser uses exploration and exploitation strategies to find global optima.                                 | Planned |
+| Optimiser Name                         | Description                                                                                                                                                                     | Status    |
+|----------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|
+| **Ant Colony Optimisation (ACO)**      | Based on the foraging behavior of ants, this optimiser uses a population of solutions to iteratively improve results through pheromone-based communication.                     | Planned   |
+| **Artificial Bee Colony (ABC)**        | Modeled after the foraging behavior of honeybees, this optimiser simulates the search for food sources to find optimal solutions.                                               | Planned   |
+| **Cuckoo Search**                      | Inspired by the parasitic behavior of cuckoo birds, where the optimiser exploits randomness and greediness to find optimal solutions.                                           | Planned   |
+| **Genetic Algorithm (GA)**             | Mimics the process of natural selection, using crossover and mutation to evolve better solutions over generations.                                                              | Planned   |
+| **Grey Wolf Optimisation (GWO)**       | Inspired by the hunting behavior of grey wolves, this optimiser simulates the social hierarchy and leadership dynamics within a pack to guide the search for optimal solutions. | Planned   |
+| **Harris Hawk Optimiser (HHO)**        | Mimics the cooperative hunting behavior of Harris hawks, where individuals switch between exploration and exploitation during the search process.                               | Completed |
+| **Particle Swarm Optimisation (PSO)**  | Inspired by the social behavior of birds flocking or fish schooling, this optimiser uses a population of candidate solutions to explore the search space.                       | Planned   |
+| **Whale Optimisation Algorithm (WOA)** | Based on the bubble-net hunting strategy of humpback whales, this optimiser uses exploration and exploitation strategies to find global optima.                                 | Planned   |
 
 ### Integration
 

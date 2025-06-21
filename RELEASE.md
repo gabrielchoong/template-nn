@@ -1,6 +1,20 @@
-# Releases Notes
+# Release Notes
 
 ## Alpha
+
+### 0.1.4
+
+**Breaking Changes**:
+
+- Removed `utils.gpu.gpu.get_gpu_device`.
+- Removed `utils.model_compose_utils`.
+- Renamed directories: `utils/` ➝ `_utils/`, and `shallow/` ➝ `networks/`.
+- Removed unnecessary abstractions, including `_utils.model_compose` and `_utils.model_compose_utils`.
+- Added `FNN` to the public API via `__init__.py`.
+  - Users can now import directly using `from template_nn import FNN`.
+- Introduced `BaseNetwork`, a new base class designed to support all future neural network architectures.
+- Improved error handling:
+  - Explicit error messages are now raised instead of being silently handled.
 
 ### 0.1.3
 
@@ -24,5 +38,7 @@
 
 ### 0.1.0
 
-- Added `shallow.fnn`: Easily create customisable feedforward neural networks with support for dynamic hidden layer configurations.
-- Added `utils.gpu`: Introduced utility functions for seamless GPU setup and integration, enabling faster computation and streamlined workflows.
+- Added `shallow.fnn`: Easily create customisable feedforward neural networks with support for dynamic hidden layer
+  configurations.
+- Added `utils.gpu`: Introduced utility functions for seamless GPU setup and integration, enabling faster computation
+  and streamlined workflows.
