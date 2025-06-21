@@ -4,11 +4,12 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "template-nn"
-version = "0.1.4.dev1"
+version = "0.1.4.dev2"
 dependencies = [
-    "torch>=2.5.0",
+    "torch>=2.6.0",
     "pandas>=1.0.0",
-    "numpy>=1.18.0"
+    "numpy>=1.18.0",
+    "mealpy>=3.0.2",
 ]
 authors = [
     { name = "Gabriel Choong Ge Liang", email = "gabrielchoonggeliang@gmail.com" }
