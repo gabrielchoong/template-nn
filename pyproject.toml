@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "template-nn"
-version = "0.1.4.dev2"
+version = "0.1.4"
 dependencies = [
     "torch>=2.6.0",
     "pandas>=1.0.0",

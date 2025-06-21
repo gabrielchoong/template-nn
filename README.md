@@ -5,7 +5,14 @@ leverages the power of [PyTorch](https://github.com/pytorch/pytorch).
 
 Huge thanks to the PyTorch team for enabling projects like this.
 
+
 ## Installation
+
+> [!WARNING]
+> **Breaking Changes in 0.1.4**
+>
+> This release includes directory renames, module restructuring, and function removals.  
+> If you're upgrading from 0.1.3 or earlier, please read the [Release Notes](RELEASE.md) before updating.
 
 You can install `template-nn` via pip:
 
@@ -29,13 +36,25 @@ at [Documentation](https://gabrielchoong.github.io/template-nn).
 
 ### Feature Preview
 
-For more information on how to use this project, see [Examples](EXAMPLES.md).
-
 ```python
-from template_nn.networks.fnn import FNN
+import torch.nn as nn
+from template_nn import FNN
 
-model = FNN(input_size=10, output_size=5, hidden_sizes=5)
-# model = F_NN(input_size=10, output_size=5, hidden_sizes=[8, 6])
+# Single hidden layer model
+model = FNN({
+    "input_size": 10,
+    "output_size": 5,
+    "hidden_sizes": 5,
+    "activation_functions": [nn.ReLU()]
+})
+
+# Deep network with 5 hidden layers
+deep = FNN({
+    "input_size": 10,
+    "output_size": 5,
+    "hidden_sizes": [8] * 5,
+    "activation_functions": [nn.ReLU()] * 5
+})
 ```
 
 ## Releases and Contributing

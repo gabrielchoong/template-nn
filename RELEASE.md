@@ -1,14 +1,20 @@
-# Releases Notes
+# Release Notes
 
 ## Alpha
 
 ### 0.1.4
 
-**Breaking Changes (dev only)**:
+**Breaking Changes**:
 
-- Moved `utils.gpu.gpu.get_gpu_device` to `utils.gpu.get_gpu_device`.
-- Added a new `keys` argument in `utils.model_compose.build_tabular_model` (required if you're calling this directly or
-  have overriden internals).
+- Removed `utils.gpu.gpu.get_gpu_device`.
+- Removed `utils.model_compose_utils`.
+- Renamed directories: `utils/` ➝ `_utils/`, and `shallow/` ➝ `networks/`.
+- Removed unnecessary abstractions, including `_utils.model_compose` and `_utils.model_compose_utils`.
+- Added `FNN` to the public API via `__init__.py`.
+  - Users can now import directly using `from template_nn import FNN`.
+- Introduced `BaseNetwork`, a new base class designed to support all future neural network architectures.
+- Improved error handling:
+  - Explicit error messages are now raised instead of being silently handled.
 
 ### 0.1.3
 
