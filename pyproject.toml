@@ -2,9 +2,12 @@
 requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
+[tools.setuptools.packages.find]
+include = ["template_nn", "template_nn.*"]
+
 [project]
 name = "template-nn"
-version = "0.1.4"
+version = "0.1.5.dev0"
 dependencies = [
     "torch>=2.6.0",
     "pandas>=1.0.0",
