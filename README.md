@@ -9,7 +9,7 @@ Huge thanks to the PyTorch team for enabling projects like this.
 ## Installation
 
 > [!WARNING]
-> **Breaking Changes in 0.1.4**
+> **Breaking Changes in Version>=0.1.4**
 >
 > This release includes directory renames, module restructuring, and function removals.  
 > If you're upgrading from 0.1.3 or earlier, please read the [Release Notes](RELEASE.md) before updating.
