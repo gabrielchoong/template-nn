@@ -33,7 +33,8 @@ class FNN(BaseNetwork):
     """
 
     @overload
-    def __init__(self, tabular: dict | pd.DataFrame | None = None,
+    def __init__(self,
+                 tabular: dict | pd.DataFrame | None = None,
                  visualise: bool = False) -> None:
         ...
 
@@ -53,7 +54,6 @@ class FNN(BaseNetwork):
                  tabular: dict | pd.DataFrame | None = None,
                  activation_functions: Iterable[nn.Module] | None = None,
                  visualise: bool = False) -> None:
-
         """
         The 3 required initializer arguments are `input_size`, `output_size`, and `hidden_sizes`.
         :param input_size: The number of input features for the model.
@@ -73,9 +73,9 @@ class FNN(BaseNetwork):
                 "Direct use of input_size/output_size/hidden_sizes is deprecated and will be removed in version 0.1.6."
                 "Pass in a dictionary or DataFrame directly instead.",
                 DeprecationWarning,
-                stacklevel=2
-            )
-            self.model = build_model(input_size, output_size, hidden_sizes, activation_functions)
+                stacklevel=2)
+            self.model = build_model(input_size, output_size, hidden_sizes,
+                                     activation_functions)
 
         print(self) if visualise else None
 
