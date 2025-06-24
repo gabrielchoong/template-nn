@@ -41,7 +41,7 @@ import torch.nn as nn
 from template_nn import FNN
 
 # Single hidden layer model
-model = FNN({
+model = FNN(tabular={
     "input_size": 10,
     "output_size": 5,
     "hidden_sizes": 5,
@@ -49,7 +49,7 @@ model = FNN({
 })
 
 # Deep network with 5 hidden layers
-deep = FNN({
+deep = FNN(tabular={
     "input_size": 10,
     "output_size": 5,
     "hidden_sizes": [8] * 5,
