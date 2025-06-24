@@ -1,0 +1,11 @@
+{
+  "python.linting.enabled": true,
+  "python.linting.ruffEnabled": true,
+  "python.linting.lintOnSave": true,
+  "[python]": {
+    "editor.formatOnSaveMode": "file",
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "eeyore.yapf",
+    "editor.formatOnType": false
+  }
+}

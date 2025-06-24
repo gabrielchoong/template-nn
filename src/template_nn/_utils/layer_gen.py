@@ -3,10 +3,9 @@ from typing import List, Iterable, Sized
 from torch import nn
 
 
-def create_layers(input_size: int,
-                  output_size: int,
-                  hidden_sizes: List[int] | Sized,
-                  activation_functions: Iterable[nn.Module]) -> list[nn.Module]:
+def create_layers(
+        input_size: int, output_size: int, hidden_sizes: List[int] | Sized,
+        activation_functions: Iterable[nn.Module]) -> list[nn.Module]:
     """
     A function to generate layers dynamically.
     :param input_size: The number of input features.
@@ -22,8 +21,8 @@ def create_layers(input_size: int,
 
     in_size = input_size
 
-    # TODO: abstract layer generation logic
-    for i, (hidden_size, activation_function) in enumerate(zip(hidden_sizes, activation_functions)):
+    for i, (hidden_size, activation_function) in enumerate(
+            zip(hidden_sizes, activation_functions)):
         layers.append(nn.Linear(in_size, hidden_size))
         layers.append(activation_function)
 
@@ -31,6 +30,5 @@ def create_layers(input_size: int,
         # effectively shifts the input size for the next layer
         in_size = hidden_size
 
-    # TODO: Refactor to allow Iterable[int] once nn.Linear compatibility is addressed
     layers.append(nn.Linear(hidden_sizes[-1], output_size))
     return layers
