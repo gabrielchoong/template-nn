@@ -44,7 +44,7 @@ from template_nn import FNN
 model = FNN(tabular={
     "input_size": 10,
     "output_size": 5,
-    "hidden_sizes": 5,
+    "hidden_sizes": [5],
     "activation_functions": [nn.ReLU()]
 })
 
