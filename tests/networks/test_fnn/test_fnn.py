@@ -6,14 +6,19 @@ from torch import nn
 from template_nn import FNN
 
 
+# TODO: rewrite test
 @pytest.mark.parametrize("input_size, expected_output_shape", [
     (10, (1, 2)),
     (20, (1, 2)),
     (50, (1, 2)),
 ])
 def test_variable_input_size_shallow(input_size, expected_output_shape):
-    # input_size - 5 - 2 Neural Network
-    model = FNN(input_size, output_size=2, hidden_sizes=[5], activation_functions=[nn.ReLU()])
+    model = FNN({
+        "input_size": input_size,
+        "output_size": 2,
+        "hidden_sizes": [5],
+        "activation_functions": [nn.ReLU()]
+    })
 
     x = torch.randn(1, input_size)
 
@@ -29,7 +34,12 @@ def test_variable_input_size_shallow(input_size, expected_output_shape):
 ])
 def test_variable_input_size_deep(input_size, expected_output_shape):
     # input_size - 5 - 2 Neural Network
-    model = FNN(input_size, output_size=2, hidden_sizes=[5 for _ in range(5)], activation_functions=[nn.ReLU() for _ in range(5)])
+    model = FNN({
+        "input_size": input_size,
+        "output_size": 2,
+        "hidden_sizes": [5 for _ in range(5)],
+        "activation_functions": [nn.ReLU() for _ in range(5)]
+    })
 
     x = torch.randn(1, input_size)
 
@@ -45,7 +55,12 @@ def test_variable_input_size_deep(input_size, expected_output_shape):
 ])
 def test_none_type_hidden_layer_num(input_size, expected_output_shape):
     # input_size - 5 - 2 Neural Network
-    model = FNN(input_size=input_size, output_size=2, hidden_sizes=[5], activation_functions=[nn.ReLU()])
+    model = FNN({
+        "input_size": input_size,
+        "output_size": 2,
+        "hidden_sizes": [5],
+        "activation_functions": [nn.ReLU()]
+    })
 
     x = torch.randn(1, input_size)
 
@@ -68,7 +83,8 @@ def test_build_dict_model_valid():
     output = model(x)
 
     assert output.shape == (
-        1, valid_dict["output_size"]), f"Expected output shape {(1, valid_dict['output_size'])}, but got {output.shape}"
+        1, valid_dict["output_size"]
+    ), f"Expected output shape {(1, valid_dict['output_size'])}, but got {output.shape}"
 
 
 def test_build_dict_model_invalid_keys():

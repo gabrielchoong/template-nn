@@ -3,7 +3,7 @@ from typing import Iterable
 import pytest
 import torch.nn as nn
 from torch.nn import Module
-from template_nn._utils.args_val import has_activation_functions
+from template_nn.args_val import has_activation_functions
 
 
 @pytest.mark.parametrize("activation_functions", [nn.ReLU()])

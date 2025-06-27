@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from template_nn._utils.model_compose import is_df
+from template_nn.args_val import is_df
 
 
 def test_is_df_returns_expected_values():

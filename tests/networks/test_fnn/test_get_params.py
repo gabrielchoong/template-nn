@@ -1,7 +1,7 @@
 import pandas as pd
 import torch.nn as nn
 
-from template_nn._utils.model_compose import get_params
+from template_nn import FNN
 
 
 def test_get_params_with_dict():
@@ -13,7 +13,8 @@ def test_get_params_with_dict():
     }
     keys = ("input_size", "output_size", "hidden_sizes",
             "activation_functions")
-    result = get_params(tabular, keys)
+    model = FNN(tabular)
+    result = model._get_params(tabular, keys)
     assert result[:3] == [10, 1, [5]]
     assert isinstance(result[3][0], nn.ReLU)
 
@@ -27,6 +28,7 @@ def test_get_params_with_dataframe():
     }])
     keys = ("input_size", "output_size", "hidden_sizes",
             "activation_functions")
-    result = get_params(df, keys)
+    model = FNN(df)
+    result = model._get_params(df, keys)
     assert result[:3] == [10, 1, [5]]
     assert isinstance(result[3][0], nn.ReLU)

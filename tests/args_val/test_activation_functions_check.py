@@ -1,7 +1,7 @@
 import re
 import pytest
 import torch.nn as nn
-from template_nn._utils.args_val import activation_functions_check
+from template_nn.args_val import activation_functions_check
 
 
 @pytest.mark.parametrize("activation_functions, hidden_sizes",

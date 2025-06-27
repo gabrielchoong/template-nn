@@ -1,4 +1,4 @@
-from template_nn._utils.model_compose import is_dict
+from template_nn.args_val import is_dict
 
 
 def test_is_dict_returns_expected_values():

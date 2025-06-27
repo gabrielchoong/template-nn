@@ -1,6 +1,6 @@
 import re
 import pytest
-from template_nn._utils.args_val import is_positive_int
+from template_nn.args_val import is_positive_int
 
 
 @pytest.mark.parametrize("number", [1, 42, 1000, 99999, 100000])
