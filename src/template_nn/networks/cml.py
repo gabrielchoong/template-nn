@@ -3,14 +3,14 @@ import torch.nn as nn
 
 from ..args_val import (is_iterable, is_positive_int)
 
-from ..nn_keys import MODEL_KEYS
+from ..retrieve_keys import get_model_keys
 from .base_nn import BaseNetwork
 
 
 class CML(BaseNetwork):
 
     def __init__(self, tabular, visualise):
-        super().__init__(tabular, MODEL_KEYS["CML"], visualise)
+        super().__init__(tabular, get_model_keys("CML"), visualise)
 
     def _build_model(self,
                      conv_channels: List[int],

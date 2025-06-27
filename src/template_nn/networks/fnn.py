@@ -4,7 +4,7 @@ import pandas as pd
 import torch.nn as nn
 
 from .base_nn import BaseNetwork
-from ..nn_keys import MODEL_KEYS
+from ..retrieve_keys import get_model_keys
 from ..args_val import (is_positive_int, is_iterable, has_activation_functions,
                         activation_functions_check)
 
@@ -28,7 +28,7 @@ class FNN(BaseNetwork):
         :param visualise: A toggle switch to visualize the model. OFF(False) by default.
         """
 
-        super().__init__(tabular, MODEL_KEYS["FNN"], visualise)
+        super().__init__(tabular, get_model_keys("FNN"), visualise)
 
     def _build_model(self, input_size: int, output_size: int,
                      hidden_sizes: List[int],

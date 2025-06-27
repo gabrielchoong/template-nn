@@ -1,8 +1,0 @@
-MODEL_KEYS = {
-    "FNN":
-    ("input_size", "output_size", "hidden_sizes", "activation_functions"),
-    "CNN":
-    ("image_size", "conv_channels", "conv_kernel_size", "pool_kernel_size",
-     "fcn_hidden_sizes", "activation_functions", "output_channel"),
-    "CML": ("conv_channels", "conv_kernel_size", "pool_kernel_size"),
-}

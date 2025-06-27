@@ -7,7 +7,7 @@ from ..args_val import is_iterable, is_positive_int
 from .base_nn import BaseNetwork
 from .cml import CML
 from .fnn import FNN
-from ..nn_keys import MODEL_KEYS
+from ..retrieve_keys import get_model_keys
 
 
 class CNN(BaseNetwork):
@@ -24,7 +24,7 @@ class CNN(BaseNetwork):
         :param visualise: A toggle switch to visualize the model. OFF(False) by default.
         """
 
-        super().__init__(tabular, MODEL_KEYS["CNN"], visualise)
+        super().__init__(tabular, get_model_keys("CNN"), visualise)
         self.image_size = (0, 0)
 
     def _build_model(self, image_size: tuple[int, int],
