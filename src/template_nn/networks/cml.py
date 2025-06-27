@@ -3,7 +3,7 @@ import torch.nn as nn
 
 from ..args_val import (is_iterable, is_positive_int)
 
-from ..networks.nn_keys import MODEL_KEYS
+from ..nn_keys import MODEL_KEYS
 from .base_nn import BaseNetwork
 
 

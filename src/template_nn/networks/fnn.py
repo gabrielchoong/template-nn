@@ -4,7 +4,7 @@ import pandas as pd
 import torch.nn as nn
 
 from .base_nn import BaseNetwork
-from .nn_keys import MODEL_KEYS
+from ..nn_keys import MODEL_KEYS
 from ..args_val import (is_positive_int, is_iterable, has_activation_functions,
                         activation_functions_check)
 
