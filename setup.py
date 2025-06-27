@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="template-nn",
-    version="0.1.5.dev0",
+    version="0.1.6.dev0",
     packages=find_packages(where="src",
                            include=["template_nn", "template_nn.*"]),
     package_dir={"": "src"},
