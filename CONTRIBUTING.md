@@ -20,7 +20,7 @@ If you have found a bug, you can report it using the
 [issues](https://github.com/gabrielchoong/template-nn/issues). Before
 reporting your bug, it is important to do the following checks:
 
-1. Update your local repository to the latest `alpha-0.1.x` branch. Maybe your bug has already been fixed in the latest
+1. Update your local repository to the latest `main` branch. Maybe your bug has already been fixed in the latest
    version;
 2. Verify if the bug has not been previously reported by someone else (search the existing issues).
 
@@ -37,7 +37,7 @@ issue.
 #### Note about security issues
 
 If you have found a security issue **do not use issues to report the
-bug**. Write your report via email directly to some project administrator. It will be reviewed, validated and corrected
+bug**. Write your report via email directly to the project maintainers at [your-security-email@example.com]. It will be reviewed, validated and corrected
 as needed.
 We ask that you **do not make the fault public** for the safety of everyone using the project in its current state.
 

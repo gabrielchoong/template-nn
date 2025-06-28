@@ -1,6 +1,31 @@
 # Release Notes
 
-## Alpha
+
+
+### 0.1.6
+
+**Breaking Changes**:
+
+- Removed optimiser support: The optimiser functionality has been deprecated and removed.
+
+**New Features**:
+
+- Introduced a new neural network template.
+- Model keys are now stored in a `keys.json` file instead of a Python dictionary.
+
+**Improvements**:
+
+- Updated `README.md` for better clarity and information.
+- Refactored imports for improved code organization.
+- Moved files from the `networks` directory for better structure.
+- Added additional unit tests to further enhance code reliability.
+
+### 0.1.5
+
+- Improved build system: Added `__init__.py` to ensure `_utils` is recognized during build processes.
+- Enhanced code quality:
+  - Added new unit tests to improve test coverage and stability.
+  - Applied comprehensive Python linting and formatting across the codebase.
 
 ### 0.1.4
 
