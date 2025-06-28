@@ -1,2 +1,3 @@
 include README.md
 include LICENSE
+include template_nn/keys.json
