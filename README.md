@@ -73,7 +73,7 @@ template_nn_cnn_model = CNN({
     "conv_kernel_size": 5,
     "pool_kernel_size": 2,
     "fcn_hidden_sizes": [120, 84],
-    "activation_functions": [nn.ReLU(), nn.ReLU(), nn.ReLU(), nn.ReLU()], # For conv and fc layers
+    "activation_functions": [nn.ReLU(), nn.ReLU()],
     "output_channel": 10
 })
 
