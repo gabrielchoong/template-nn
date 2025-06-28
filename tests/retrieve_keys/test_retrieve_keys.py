@@ -29,9 +29,8 @@ def test_get_model_keys_file_not_found(monkeypatch):
     # Mock os.path.exists to return False
     monkeypatch.setattr(os.path, "exists", lambda x: False)
 
-    with pytest.raises(
-        FileNotFoundError, match=f"keys.json not found at {KEY_FILE_PATH}"
-    ):
+    with pytest.raises(FileNotFoundError,
+                       match=f"keys.json not found at {KEY_FILE_PATH}"):
         get_model_keys("FNN")
 
 
@@ -45,5 +44,6 @@ def test_get_model_keys_model_not_found(monkeypatch):
         lambda f, mode: mock_open(read_data=json.dumps(MOCK_KEYS_DATA))(),
     )
 
-    with pytest.raises(ValueError, match="Model name 'RNN' not found in keys.json"):
+    with pytest.raises(ValueError,
+                       match="Model name 'RNN' not found in keys.json"):
         get_model_keys("RNN")

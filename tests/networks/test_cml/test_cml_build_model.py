@@ -4,7 +4,11 @@ from template_nn.networks.cml import CML
 
 def test_cml_build_model_structure():
     cml = CML(
-        {"conv_channels": [3, 6, 16], "conv_kernel_size": 3, "pool_kernel_size": 2},
+        {
+            "conv_channels": [3, 6, 16],
+            "conv_kernel_size": 3,
+            "pool_kernel_size": 2
+        },
         visualise=False,
     )
 
@@ -33,7 +37,11 @@ def test_cml_build_model_structure():
 
 def test_cml_build_model_single_block():
     cml = CML(
-        {"conv_channels": [1, 10], "conv_kernel_size": 5, "pool_kernel_size": 3},
+        {
+            "conv_channels": [1, 10],
+            "conv_kernel_size": 5,
+            "pool_kernel_size": 3
+        },
         visualise=False,
     )
 

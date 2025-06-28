@@ -5,6 +5,7 @@ from ..args_val import is_df, is_dict, is_valid_keys
 
 
 class BaseNetwork(nn.Module):
+
     def __init__(self, tabular, model_keys, visualise) -> None:
         super().__init__()
         self.tabular = tabular
@@ -32,11 +33,8 @@ class BaseNetwork(nn.Module):
         """
         is_valid_keys(tabular, model_keys)
 
-        return (
-            is_dict(tabular, model_keys)
-            if isinstance(tabular, dict)
-            else is_df(tabular, model_keys)
-        )
+        return (is_dict(tabular, model_keys)
+                if isinstance(tabular, dict) else is_df(tabular, model_keys))
 
     def optimise(self):
         pass

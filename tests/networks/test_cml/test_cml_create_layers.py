@@ -4,13 +4,17 @@ from template_nn.networks.cml import CML
 
 def test_cml_create_layers_structure():
     cml_instance = CML(
-        {"conv_channels": [3, 6, 16], "conv_kernel_size": 3, "pool_kernel_size": 2},
+        {
+            "conv_channels": [3, 6, 16],
+            "conv_kernel_size": 3,
+            "pool_kernel_size": 2
+        },
         visualise=False,
     )
 
-    layers = cml_instance._create_layers(
-        conv_channels=[3, 6, 16], conv_kernel_size=3, pool_kernel_size=2
-    )
+    layers = cml_instance._create_layers(conv_channels=[3, 6, 16],
+                                         conv_kernel_size=3,
+                                         pool_kernel_size=2)
     assert isinstance(layers, list)
     assert len(layers) == 4  # Two conv-pool blocks
 
@@ -35,13 +39,17 @@ def test_cml_create_layers_structure():
 
 def test_cml_create_layers_single_block():
     cml_instance = CML(
-        {"conv_channels": [1, 10], "conv_kernel_size": 5, "pool_kernel_size": 3},
+        {
+            "conv_channels": [1, 10],
+            "conv_kernel_size": 5,
+            "pool_kernel_size": 3
+        },
         visualise=False,
     )
 
-    layers = cml_instance._create_layers(
-        conv_channels=[1, 10], conv_kernel_size=5, pool_kernel_size=3
-    )
+    layers = cml_instance._create_layers(conv_channels=[1, 10],
+                                         conv_kernel_size=5,
+                                         pool_kernel_size=3)
     assert isinstance(layers, list)
     assert len(layers) == 2  # One conv-pool block
 
