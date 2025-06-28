@@ -28,10 +28,10 @@ pip install -r requirements.txt
 pip install .
 ```
 
-## Documentation
+<!-- ## Documentation
 
 For detailed documentation, including usage instructions and examples, visit the online documentation
-at [Documentation](https://gabrielchoong.github.io/template-nn).
+at [Documentation](https://gabrielchoong.github.io/template-nn). -->
 
 ## Examples
 
