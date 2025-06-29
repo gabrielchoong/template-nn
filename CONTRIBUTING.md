@@ -37,7 +37,7 @@ issue.
 #### Note about security issues
 
 If you have found a security issue **do not use issues to report the
-bug**. Write your report via email directly to the project maintainers at [your-security-email@example.com]. It will be reviewed, validated and corrected
+bug**. Write your report via email directly to the project maintainers at [gabrielchoonggeliang@gmail.com]. It will be reviewed, validated and corrected
 as needed.
 We ask that you **do not make the fault public** for the safety of everyone using the project in its current state.
 
