@@ -10,6 +10,7 @@
         "conv_channels",
         "conv_kernel_size",
         "pool_kernel_size",
+        "pooling_indices",
         "fcn_hidden_sizes",
         "activation_functions",
         "output_channel"
@@ -17,6 +18,7 @@
     "CML": [
         "conv_channels",
         "conv_kernel_size",
-        "pool_kernel_size"
+        "pool_kernel_size",
+        "pooling_indices"
     ]
 }
