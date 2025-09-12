@@ -3,12 +3,14 @@ from template_nn import FNN
 
 
 def test_create_layers_structure():
-    model = FNN({
-        "input_size": 10,
-        "output_size": 2,
-        "hidden_sizes": [16, 8],
-        "activation_functions": [nn.ReLU(), nn.Tanh()]
-    })
+    model = FNN(
+        {
+            "input_size": 10,
+            "output_size": 2,
+            "hidden_sizes": [16, 8],
+            "activation_functions": [nn.ReLU(), nn.Tanh()],
+        }
+    )
     net = model.model
     # Expect: Linear -> ReLU -> Linear -> Tanh -> Linear
     assert len(net) == 5

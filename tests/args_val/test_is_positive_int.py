@@ -9,10 +9,10 @@ def test_is_positive_int_ok(number):
 
 
 @pytest.mark.parametrize(
-    "number", [-1, -100000, 0, 0.5, -0.0001, None, "string", {}, []])
+    "number", [-1, -100000, 0, 0.5, -0.0001, None, "string", {}, []]
+)
 def test_is_positive_int_error(number):
     with pytest.raises(
-            ValueError,
-            match=re.escape(
-                f"Expected positive integer, got {number} instead.")):
+        ValueError, match=re.escape(f"Expected positive integer, got {number} instead.")
+    ):
         is_positive_int(number)

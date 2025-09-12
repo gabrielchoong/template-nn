@@ -10,7 +10,7 @@ def test_compute_output_dim():
         "pool_kernel_size": 2,
         "fcn_hidden_sizes": [120, 84],
         "activation_functions": [nn.ReLU(), nn.ReLU()],
-        "output_channel": 10
+        "output_channel": 10,
     }
 
     cnn = CNN(tabular=config)

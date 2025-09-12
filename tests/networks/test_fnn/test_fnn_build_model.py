@@ -3,12 +3,14 @@ from template_nn import FNN
 
 
 def test_build_model_returns_sequential():
-    model = FNN({
-        "input_size": 4,
-        "output_size": 1,
-        "hidden_sizes": [8, 4],
-        "activation_functions": [nn.ReLU(), nn.Tanh()]
-    })
+    model = FNN(
+        {
+            "input_size": 4,
+            "output_size": 1,
+            "hidden_sizes": [8, 4],
+            "activation_functions": [nn.ReLU(), nn.Tanh()],
+        }
+    )
 
     net = model.model
     assert isinstance(net, nn.Sequential)

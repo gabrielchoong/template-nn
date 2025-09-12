@@ -106,12 +106,11 @@ def remove_network_files(name):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description="Create or remove boilerplate for a network.")
+        description="Create or remove boilerplate for a network."
+    )
     group = parser.add_mutually_exclusive_group(required=True)
-    group.add_argument("--install",
-                       help="Name of the network to install (e.g. RNN)")
-    group.add_argument("--remove",
-                       help="Name of the network to remove (e.g. RNN)")
+    group.add_argument("--install", help="Name of the network to install (e.g. RNN)")
+    group.add_argument("--remove", help="Name of the network to remove (e.g. RNN)")
 
     args = parser.parse_args()
 

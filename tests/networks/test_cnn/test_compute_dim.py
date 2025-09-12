@@ -10,7 +10,8 @@ from template_nn.networks.cnn import CNN
         (28, 2, 2, 0, 1, 14),  # pooling
         (28, 3, 2, 1, 1, 14),  # padding applied
         (64, 5, 1, 2, 1, 64),  # dilation=1, padding=2
-    ])
+    ],
+)
 def test_compute_dim(in_dim, kernel_size, stride, padding, dilation, expected):
     config = {
         "image_size": (64, 64),
@@ -19,7 +20,7 @@ def test_compute_dim(in_dim, kernel_size, stride, padding, dilation, expected):
         "pool_kernel_size": 2,
         "fcn_hidden_sizes": [120, 80],
         "activation_functions": [nn.ReLU(), nn.ReLU()],
-        "output_channel": 10
+        "output_channel": 10,
     }
     cnn = CNN(tabular=config)
     result = cnn._compute_dim(in_dim, kernel_size, stride, padding, dilation)

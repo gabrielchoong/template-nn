@@ -6,7 +6,6 @@ from template_nn.networks.base_nn import BaseNetwork
 
 # A dummy subclass for testing BaseNetwork's __init__
 class DummyNetwork(BaseNetwork):
-
     def __init__(self, tabular, model_keys, visualise=False):
         super().__init__(tabular, model_keys, visualise)
 
@@ -42,7 +41,6 @@ def test_base_network_init_dataframe():
 def test_base_network_abstract_methods_raise_not_implemented_error_on_init():
     # A subclass that does NOT implement the abstract methods
     class IncompleteNetwork(BaseNetwork):
-
         def __init__(self, tabular, model_keys, visualise=False):
             super().__init__(tabular, model_keys, visualise)
 
@@ -50,6 +48,5 @@ def test_base_network_abstract_methods_raise_not_implemented_error_on_init():
     tabular_data = {"key1": 1, "key2": "value"}
     model_keys = ["key1", "key2"]
 
-    with pytest.raises(NotImplementedError,
-                       match="Define how model is built here"):
+    with pytest.raises(NotImplementedError, match="Define how model is built here"):
         IncompleteNetwork(tabular_data, model_keys)

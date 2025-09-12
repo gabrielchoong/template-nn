@@ -3,15 +3,17 @@ from template_nn import CNN
 
 
 def test_build_model_returns_sequential():
-    model = CNN({
-        "image_size": (64, 64),
-        "conv_channels": [3, 6, 16],
-        "conv_kernel_size": 3,
-        "pool_kernel_size": 2,
-        "fcn_hidden_sizes": [120, 80],
-        "activation_functions": [nn.ReLU(), nn.ReLU()],
-        "output_channel": 10
-    })
+    model = CNN(
+        {
+            "image_size": (64, 64),
+            "conv_channels": [3, 6, 16],
+            "conv_kernel_size": 3,
+            "pool_kernel_size": 2,
+            "fcn_hidden_sizes": [120, 80],
+            "activation_functions": [nn.ReLU(), nn.ReLU()],
+            "output_channel": 10,
+        }
+    )
 
     net = model.model
     assert isinstance(net, nn.Sequential)

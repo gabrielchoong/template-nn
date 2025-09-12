@@ -35,8 +35,7 @@ def is_positive_int(number: int) -> None:
 
 def is_iterable(numbers: Iterable[int] | List[tuple[int, int]]) -> None:
     if not isinstance(numbers, Iterable):
-        raise ValueError(
-            f"Expected iterable structure, got {numbers} instead.")
+        raise ValueError(f"Expected iterable structure, got {numbers} instead.")
 
 
 def has_activation_functions(activation_functions: Iterable[Module]) -> None:
@@ -44,11 +43,11 @@ def has_activation_functions(activation_functions: Iterable[Module]) -> None:
         raise ValueError("No activation functions were provided.")
 
 
-def activation_functions_check(activation_functions: List[Module],
-                               hidden_sizes: List[int]) -> None:
+def activation_functions_check(
+    activation_functions: List[Module], hidden_sizes: List[int]
+) -> None:
     if len(activation_functions) != len(hidden_sizes):
         raise ValueError(
             "Number of activation functions does not match number of hidden node counts."
-            +
-            f"Expected {activation_functions} of hidden nodes, but got {hidden_sizes} instead."
+            + f"Expected {activation_functions} of hidden nodes, but got {hidden_sizes} instead."
         )
