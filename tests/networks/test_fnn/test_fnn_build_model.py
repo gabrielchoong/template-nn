@@ -8,7 +8,7 @@ def test_build_model_returns_sequential():
             "input_size": 4,
             "output_size": 1,
             "hidden_sizes": [8, 4],
-            "activation_functions": [nn.ReLU(), nn.Tanh()],
+            "activation_functions": ["ReLU", "Tanh"],
         }
     )
 

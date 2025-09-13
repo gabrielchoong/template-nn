@@ -8,7 +8,7 @@ def test_create_layers_structure():
             "input_size": 10,
             "output_size": 2,
             "hidden_sizes": [16, 8],
-            "activation_functions": [nn.ReLU(), nn.Tanh()],
+            "activation_functions": ["ReLU", "Tanh"],
         }
     )
     net = model.model

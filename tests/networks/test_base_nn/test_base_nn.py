@@ -1,13 +1,17 @@
 import pytest
-import pandas as pd
 import torch.nn as nn
 from template_nn.networks.base_nn import BaseNetwork
 
 
 # A dummy subclass for testing BaseNetwork's __init__
 class DummyNetwork(BaseNetwork):
-    def __init__(self, tabular, model_keys, visualise=False):
-        super().__init__(tabular, model_keys, visualise)
+    def __init__(
+        self,
+        model_config: dict[str, int | list[int] | list[str]],
+        visualise: bool = False,
+    ) -> None:
+        super().__init__(visualise)
+        self.model_config = model_config
 
     def _create_layers(self, *args, **kwargs):
         # This will be called by BaseNetwork's __init__
@@ -21,32 +25,20 @@ class DummyNetwork(BaseNetwork):
 
 
 def test_base_network_init_dict():
-    tabular_data = {"key1": 1, "key2": "value"}
-    model_keys = ["key1", "key2"]
-    net = DummyNetwork(tabular_data, model_keys)
-    assert net.tabular == tabular_data
-    assert net.model_keys == model_keys
+    model_config_data = {"key1": 1, "key2": "value"}
+    net = DummyNetwork(model_config_data, visualise=False)
+    assert net.model_config == model_config_data
     assert not net.visualise
-
-
-def test_base_network_init_dataframe():
-    tabular_data = pd.DataFrame({"key1": [1], "key2": ["value"]})
-    model_keys = ["key1", "key2"]
-    net = DummyNetwork(tabular_data, model_keys, visualise=True)
-    assert net.tabular.equals(tabular_data)
-    assert net.model_keys == model_keys
-    assert net.visualise
 
 
 def test_base_network_abstract_methods_raise_not_implemented_error_on_init():
     # A subclass that does NOT implement the abstract methods
     class IncompleteNetwork(BaseNetwork):
-        def __init__(self, tabular, model_keys, visualise=False):
-            super().__init__(tabular, model_keys, visualise)
+        def __init__(
+        self,
+        visualise: bool = False,
+    ) -> None:
+            super().__init__(visualise)
 
-    # Provide minimal valid data for __init__
-    tabular_data = {"key1": 1, "key2": "value"}
-    model_keys = ["key1", "key2"]
-
-    with pytest.raises(NotImplementedError, match="Define how model is built here"):
-        IncompleteNetwork(tabular_data, model_keys)
+    with pytest.raises(TypeError, match="Can't instantiate abstract class"):
+        IncompleteNetwork(visualise=False) # type: ignore => this error is on purpose

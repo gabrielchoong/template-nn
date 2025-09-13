@@ -10,7 +10,7 @@ def test_create_layers_structure():
             "conv_kernel_size": 3,
             "pool_kernel_size": 2,
             "fcn_hidden_sizes": [120, 80],
-            "activation_functions": [nn.ReLU(), nn.ReLU()],
+            "activation_functions": ["ReLU", "ReLU"],
             "output_channel": 10,
         }
     )
