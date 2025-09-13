@@ -1,6 +1,46 @@
 # Release Notes
 
+## New Changes
 
+### 0.2.0
+
+> This version will introduce changes that would otherwise be incompatible with v0.1.x of this library. If you depend on v0.1.x, consider locking the version for this library to the latest v0.1.x branch, which is `0.1.6`.
+
+**Breaking Changes**:
+
+- **33e059f**: Removed `pandas.Dataframe` support in model configuration to better streamline the process for maintaining the codebase. The `pandas` dependency has also been dropped from the project entirely.
+- **229e5f4**: `FNN` - Changed the type of `model_config["activation_functions"]` from `list[nn.Module]` to `list[str]` to simplify constructor interface.
+
+**Improvements**:
+
+- **c536c6e**: `forge.py` has been updated to the most recent class structure syntax.
+- **c536c6e**: `forge.py` now includes a hint in generated tests files to prompt the addition of `<classname>` into `src/__init__.py`.
+- **99c6131**: Typing variables now use Python's native type annotations.
+
+**Changes**:
+
+- **dbd6b8e**: Renamed `RELEASE.md` to `CHANGELOG.md` to better communicate changes made.
+- **a0748f4**: Added `ruff` as the formatter and linter of choice for this project.
+- **fcee959**: Added `uv` as the dependency and package manager in favour of (ana)conda.
+- **44508c6**: Updated the licensing year in `LICENSE`.
+- **eb02f32**: Removed `examples` directory from `src/` due to changing class interfaces.
+- **82dcdc1**: Removed `mealpy` as project dependency.
+- **37c5f31**: Removed `ROADMAP.md` as it no longer aligns with project direction.
+- **33e059f**: Removed `pandas` as project dependency.
+- **c536c6e**: Refactored `BaseNetwork` and `forge`.
+  - `BaseNetwork` is now an abstract class with abstract methods inherited from the `abc.ABC` class.
+  - `BaseNetwork.__init__` no longer implicitly invokes `self._build_model()`.
+  - Updated docstrings to be more meaningful for contributors.
+  - `forge` now works correctly to create network and test stubs.
+    - Created tests provides hints to add `<classname>` into `src/__init__.py`.
+- **229e5f4**: 
+  - Refactored all neural network classes to use consistent styling and code organisation.
+  - Added an implementation of `getattr(torch.nn, activation_function)()` instead of passing raw nn.Module functions.
+- **99c6131**: Refactored `typing.List` to `list` in type annotations.
+- **790ef14**: Updated return type of `get_model_keys` from `list` to `tuple[str]`.
+- **b3b6ac3**: Refactored outdated tests.
+
+## Stable
 
 ### 0.1.6
 
