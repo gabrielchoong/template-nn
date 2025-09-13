@@ -1,30 +1,17 @@
-from typing import Iterable, List
-import numpy as np
-import pandas as pd
-from torch.nn import Module
+from typing import Iterable
 
 
-def is_valid_keys(tabular: dict | pd.DataFrame, keys: tuple) -> None:
+def is_valid_keys(
+    tabular: dict[str, int | list[int] | list[str]], keys: tuple[str]
+) -> None:
     if not all(key in tabular for key in keys):
         raise ValueError(f"Tabular data must contain keys {keys}")
 
 
-def is_dict(tabular: dict | pd.DataFrame, keys: tuple) -> list:
+def is_dict(tabular: dict, keys: tuple) -> list:
     params = []
     for key in keys:
         params.append(tabular[key])
-    return params
-
-
-def is_df(tabular: dict | pd.DataFrame, keys: tuple) -> list:
-    params = []
-    for key in keys:
-        value = tabular[key].iloc[0]
-
-        if isinstance(value, np.integer):
-            params.append(value.item())
-        else:
-            params.append(value)
     return params
 
 
@@ -33,18 +20,18 @@ def is_positive_int(number: int) -> None:
         raise ValueError(f"Expected positive integer, got {number} instead.")
 
 
-def is_iterable(numbers: Iterable[int] | List[tuple[int, int]]) -> None:
+def is_iterable(numbers: Iterable[int] | list[tuple[int, int]]) -> None:
     if not isinstance(numbers, Iterable):
         raise ValueError(f"Expected iterable structure, got {numbers} instead.")
 
 
-def has_activation_functions(activation_functions: Iterable[Module]) -> None:
+def has_activation_functions(activation_functions: Iterable[str]) -> None:
     if not activation_functions:
         raise ValueError("No activation functions were provided.")
 
 
 def activation_functions_check(
-    activation_functions: List[Module], hidden_sizes: List[int]
+    activation_functions: list[str], hidden_sizes: list[int]
 ) -> None:
     if len(activation_functions) != len(hidden_sizes):
         raise ValueError(
