@@ -19,6 +19,9 @@ class {name}(BaseNetwork):
         self.params = self._get_params(model_config, self.model_keys)
         self.model = self._build_model(*self.params)
 
+        # add additional setups above this line
+        print(self) if visualise else None
+
     def _create_layers(self):
         pass
 
