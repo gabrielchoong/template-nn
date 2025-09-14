@@ -1,6 +1,6 @@
 # Release Notes
 
-## New Changes
+## Stable
 
 ### 0.2.0
 
