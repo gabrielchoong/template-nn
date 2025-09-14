@@ -16,7 +16,6 @@ name = "template-nn"
 version = "0.2.3"
 dependencies = [
     "torch>=2.6.0",
-    "numpy>=1.18.0",
 ]
 authors = [
     { name = "Gabriel Choong Ge Liang", email = "gabrielchoonggeliang@gmail.com" }
