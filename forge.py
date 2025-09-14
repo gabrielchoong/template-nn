@@ -4,22 +4,33 @@ import shutil
 import json
 
 TEMPLATE_DIR = Path(__file__).parent
-SRC_TEMPLATE = """from template_nn.networks.base_nn import BaseNetwork
-from ..nn_keys import MODEL_KEYS
+SRC_TEMPLATE = """from .base_nn import BaseNetwork
+from ..retrieve_keys import get_model_keys
 
 
 class {name}(BaseNetwork):
-    def __init__(self, tabular: dict, visualise: bool = False) -> None:
-        super().__init__(tabular, model_keys=MODEL_KEYS["{name}"], visualise=visualise)
+    def __init__(
+        self,
+        model_config: dict[str, int | list[int] | list[str]],
+        visualise: bool = False,
+    ) -> None:
+        super().__init__(visualise)
+        self.model_keys = get_model_keys("{name}")
+        self.params = self._get_params(model_config, self.model_keys)
+        self.model = self._build_model(*self.params)
 
-    def _create_layers(self, *args, **kwargs):
-        raise NotImplementedError("Define layer structure here")
+        # add additional setups above this line
+        print(self) if visualise else None
 
-    def _build_model(self, *args, **kwargs):
-        raise NotImplementedError("Define how model is built here")
+    def _create_layers(self):
+        pass
+
+    def _build_model(self):
+        pass
 """
 
 TEST_BUILD_TEMPLATE = """from template_nn import {name}
+# Add {name} into `__all__` list in src/__init__.py
 
 
 def test_build_model():
@@ -28,6 +39,7 @@ def test_build_model():
 """
 
 TEST_CREATE_TEMPLATE = """from template_nn import {name}
+# Add {name} into `__all__` list in src/__init__.py
 
 
 def test_create_layers():
@@ -106,12 +118,11 @@ def remove_network_files(name):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description="Create or remove boilerplate for a network.")
+        description="Create or remove boilerplate for a network."
+    )
     group = parser.add_mutually_exclusive_group(required=True)
-    group.add_argument("--install",
-                       help="Name of the network to install (e.g. RNN)")
-    group.add_argument("--remove",
-                       help="Name of the network to remove (e.g. RNN)")
+    group.add_argument("--install", help="Name of the network to install (e.g. RNN)")
+    group.add_argument("--remove", help="Name of the network to remove (e.g. RNN)")
 
     args = parser.parse_args()
 

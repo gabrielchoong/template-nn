@@ -1,40 +1,72 @@
 import torch
 import torch.nn as nn
 
-from ..args_val import is_df, is_dict, is_valid_keys
+from abc import ABC, abstractmethod
+
+from ..args_val import is_dict, is_valid_keys
 
 
-class BaseNetwork(nn.Module):
+class BaseNetwork(nn.Module, ABC):
+    """
+    All network classes should inherit from this class. This class is not supposed to be constructed directly.
+    """
 
-    def __init__(self, tabular, model_keys, visualise) -> None:
+    # cleanup `visualise` in a future release
+    def __init__(self, visualise: bool) -> None:
         super().__init__()
-        self.tabular = tabular
-        self.model_keys = model_keys
-        self.visualise = visualise
-        self.model = self._build_model(*self._get_params(tabular, model_keys))
+        self.model = nn.Sequential()
 
-        print(self) if visualise else None
-
+    # only override this function on rare occasions where `_build_model`
+    # and `_create_layers` is insufficient for the model complexity
+    # this is generally unnecessary and not recommended to be overriden
     def forward(self, x: torch.Tensor) -> nn.Module:
         return self.model(x)
 
-    def _build_model(self, *args, **kwargs):
+    # stick to implementing `_build_model` and `_create_layers`
+    # you do not need to overwrite this 99% of the time
+    def _get_params(
+        self,
+        model_config: dict[str, int | list[int] | list[str]],
+        model_keys: tuple[str],
+    ) -> list:
+        """
+        Dynamically retrieve model specific parameters.
+        """
+        is_valid_keys(model_config, model_keys)
+
+        return is_dict(model_config, model_keys)
+
+    @abstractmethod
+    def _build_model(self, *args, **kwargs) -> nn.Sequential:
+        """
+        Return a `nn.Sequential` object as the return value.
+
+        Check all of the variables with functions defined in `args_val.py`.
+
+        Recommended syntax:
+        ```
+            # verify arguments
+            is_positive_int(arg)
+            ...
+
+            # build the model
+            return nn.Sequential(*self._create_layers(*args, **kwargs))
+        ```
+        """
         raise NotImplementedError("Define how model is built here")
 
-    def _create_layers(self, *args, **kwargs):
+    @abstractmethod
+    def _create_layers(self, *args, **kwargs) -> list[nn.Module]:
+        """
+        The logic for creating neural networks dynamically.
+
+        Recommended syntax:
+        ```
+            layers: list[nn.Module] = []
+            for foo in bar:
+                layers.append(foo)
+                ...
+            return layers
+        ```
+        """
         raise NotImplementedError("Define layer structure here")
-
-    def _get_params(self, tabular, model_keys) -> list:
-        """
-        Destructures a tabular input.
-        :param keys: A tuple containing keys for specific use case.
-        :param tabular: A dict or pd.DataFrame input.
-        :return: A tuple containing values relevant to the `keys` list.
-        """
-        is_valid_keys(tabular, model_keys)
-
-        return (is_dict(tabular, model_keys)
-                if isinstance(tabular, dict) else is_df(tabular, model_keys))
-
-    def optimise(self):
-        pass

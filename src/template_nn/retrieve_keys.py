@@ -5,12 +5,12 @@ import os
 KEY_FILE_PATH = os.path.join(os.path.dirname(__file__), "keys.json")
 
 
-def get_model_keys(model_name: str) -> list:
+def get_model_keys(model_name: str) -> tuple[str]:
     """
     Retrieve the configuration keys for the given model name from keys.json.
 
     :param model_name: Name of the model
-    :return: List of expected configuration keys
+    :return: Tuple of expected configuration keys
     :raises FileNotFoundError: If the keys.json file does not exist
     :raises ValueError: If the model name is not found in keys.json
     """

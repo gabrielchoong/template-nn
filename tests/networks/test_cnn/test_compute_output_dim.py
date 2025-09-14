@@ -1,4 +1,3 @@
-import torch.nn as nn
 from template_nn.networks.cnn import CNN
 
 
@@ -9,11 +8,11 @@ def test_compute_output_dim():
         "conv_kernel_size": 5,
         "pool_kernel_size": 2,
         "fcn_hidden_sizes": [120, 84],
-        "activation_functions": [nn.ReLU(), nn.ReLU()],
-        "output_channel": 10
+        "activation_functions": ["ReLU", "ReLU"],
+        "output_channel": 10,
     }
 
-    cnn = CNN(tabular=config)
+    cnn = CNN(config)
 
     # Expected manually:
     # After conv: (64 - 5) / 1 + 1 = 60

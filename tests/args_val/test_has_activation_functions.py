@@ -6,15 +6,14 @@ from torch.nn import Module
 from template_nn.args_val import has_activation_functions
 
 
-@pytest.mark.parametrize("activation_functions", [nn.ReLU()])
-def test_has_activation_functions_ok(activation_functions: Iterable[Module]):
+@pytest.mark.parametrize("activation_functions", ["ReLU"])
+def test_has_activation_functions_ok(activation_functions: Iterable[str]):
     has_activation_functions(activation_functions)
 
 
 @pytest.mark.parametrize("activation_functions", [[]])
-def test_has_activation_functions_error(
-        activation_functions: Iterable[Module]):
+def test_has_activation_functions_error(activation_functions: Iterable[str]):
     with pytest.raises(
-            ValueError,
-            match=re.escape("No activation functions were provided.")):
+        ValueError, match=re.escape("No activation functions were provided.")
+    ):
         has_activation_functions(activation_functions)
