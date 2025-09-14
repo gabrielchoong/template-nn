@@ -13,12 +13,10 @@ include = ["template_nn", "template_nn.*"]
 
 [project]
 name = "template-nn"
-version = "0.2.0.post1"
+version = "0.2.1"
 dependencies = [
     "torch>=2.6.0",
     "numpy>=1.18.0",
-    "pytest>=8.3.4",
-    "pandas-stubs>=2.3.2.250827",
 ]
 authors = [
     { name = "Gabriel Choong Ge Liang", email = "gabrielchoonggeliang@gmail.com" }
@@ -32,6 +30,14 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 license = { text = "MIT" }
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3.4",
+    "ruff",
+    "uv",
+    "pip-tools"
+]
 
 [project.urls]
 Homepage = "https://github.com/gabrielchoong/template-nn"
