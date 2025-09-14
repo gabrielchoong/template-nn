@@ -29,6 +29,8 @@ class FNN(BaseNetwork):
         self.params = self._get_params(model_config, self.model_keys)
         self.model = self._build_model(*self.params)
 
+        print(self) if visualise else None
+
     def _build_model(
         self,
         input_size: int,

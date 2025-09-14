@@ -28,6 +28,8 @@ class CNN(BaseNetwork):
         self.model = self._build_model(*self.params)
         self.image_size = (0, 0)
 
+        print(self) if visualise else None
+
     def _build_model(
         self,
         image_size: tuple[int, int],
