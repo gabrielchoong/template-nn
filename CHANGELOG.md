@@ -39,6 +39,9 @@
 - **99c6131**: Refactored `typing.List` to `list` in type annotations.
 - **790ef14**: Updated return type of `get_model_keys` from `list` to `tuple[str]`.
 - **b3b6ac3**: Refactored outdated tests.
+- **22d6ebd**: Moved the handling of visualisation of created neural networks out of the `BaseNetwork` class.
+- **c88054d**: Classes inheriting `BaseNetwork` now implements the visualisation separately.
+- **0a280d7**: `forge` now includes the visualisation step when creating new classes using `--install`.
 
 ## Stable
 

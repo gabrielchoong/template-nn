@@ -35,10 +35,10 @@ def test_base_network_abstract_methods_raise_not_implemented_error_on_init():
     # A subclass that does NOT implement the abstract methods
     class IncompleteNetwork(BaseNetwork):
         def __init__(
-        self,
-        visualise: bool = False,
-    ) -> None:
+            self,
+            visualise: bool = False,
+        ) -> None:
             super().__init__(visualise)
 
     with pytest.raises(TypeError, match="Can't instantiate abstract class"):
-        IncompleteNetwork(visualise=False) # type: ignore => this error is on purpose
+        IncompleteNetwork(visualise=False)  # type: ignore => this error is on purpose
