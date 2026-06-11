@@ -70,12 +70,28 @@ class BaseNetwork(nn.Module, ABC):
         raise NotImplementedError("Define layer structure here")
 
 
-FNN_KEYS = [
-    "input_size",
-    "output_size",
-    "hidden_sizes",
-    "activation_functions",
-]
+KEYS = {
+    "FNN": [
+        "input_size",
+        "output_size",
+        "hidden_sizes",
+        "activation_functions",
+    ],
+    "CNN": [
+        "image_size",
+        "conv_channels",
+        "conv_kernel_size",
+        "pool_kernel_size",
+        "fcn_hidden_sizes",
+        "activation_functions",
+        "output_channel",
+    ],
+    "CML": [
+        "conv_channels",
+        "conv_kernel_size",
+        "pool_kernel_size",
+    ],
+}
 
 
 class FNN(BaseNetwork):
@@ -141,13 +157,6 @@ class FNN(BaseNetwork):
         return layers
 
 
-CML_KEYS = [
-    "conv_channels",
-    "conv_kernel_size",
-    "pool_kernel_size",
-]
-
-
 class CML(BaseNetwork):
     """
     A Convolution - MaxPooling Layer (CML) component for CNNs.
@@ -202,17 +211,6 @@ class CML(BaseNetwork):
             in_size = out_size
 
         return layers
-
-
-CNN_KEYS = [
-    "image_size",
-    "conv_channels",
-    "conv_kernel_size",
-    "pool_kernel_size",
-    "fcn_hidden_sizes",
-    "activation_functions",
-    "output_channel",
-]
 
 
 class CNN(BaseNetwork):
