@@ -11,8 +11,7 @@ class BaseNetwork(nn.Module, ABC):
     All network classes should inherit from this class. This class is not supposed to be constructed directly.
     """
 
-    # cleanup `visualise` in a future release
-    def __init__(self, visualise: bool) -> None:
+    def __init__(self) -> None:
         super().__init__()
         self.model = nn.Sequential()
 
