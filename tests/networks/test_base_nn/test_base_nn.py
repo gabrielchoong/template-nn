@@ -1,5 +1,6 @@
 import pytest
 import torch.nn as nn
+
 from template_nn.networks.base_nn import BaseNetwork
 
 
@@ -10,7 +11,7 @@ class DummyNetwork(BaseNetwork):
         model_config: dict[str, int | list[int] | list[str]],
         visualise: bool = False,
     ) -> None:
-        super().__init__(visualise)
+        super().__init__()
         self.model_config = model_config
 
     def _create_layers(self, *args, **kwargs):
@@ -26,9 +27,8 @@ class DummyNetwork(BaseNetwork):
 
 def test_base_network_init_dict():
     model_config_data = {"key1": 1, "key2": "value"}
-    net = DummyNetwork(model_config_data, visualise=False)
+    net = DummyNetwork(model_config_data)
     assert net.model_config == model_config_data
-    assert not net.visualise
 
 
 def test_base_network_abstract_methods_raise_not_implemented_error_on_init():
@@ -38,7 +38,7 @@ def test_base_network_abstract_methods_raise_not_implemented_error_on_init():
             self,
             visualise: bool = False,
         ) -> None:
-            super().__init__(visualise)
+            super().__init__()
 
     with pytest.raises(TypeError, match="Can't instantiate abstract class"):
-        IncompleteNetwork(visualise=False)  # type: ignore => this error is on purpose
+        IncompleteNetwork(visualise=False)
