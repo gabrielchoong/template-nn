@@ -1,4 +1,4 @@
-from template_nn.networks.cnn import CNN
+from template_nn import CNN
 
 
 def test_compute_output_dim():

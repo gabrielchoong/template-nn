@@ -1,5 +1,5 @@
 import torch.nn as nn
-from template_nn.networks.cml import CML
+from template_nn import CML
 
 
 def test_cml_create_layers_structure():

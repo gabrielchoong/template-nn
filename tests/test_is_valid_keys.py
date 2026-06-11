@@ -1,6 +1,6 @@
 import pytest
 
-from template_nn.args_val import is_valid_keys
+from template_nn import is_valid_keys
 
 
 def test_is_valid_keys_raises():
