@@ -109,34 +109,17 @@ class FNN(BaseNetwork):
         :params visualise: A boolean type for visualising structure. Default (False).
         """
         super().__init__()
-        self.model_keys = FNN_KEYS
+        self.model_keys = KEYS["FNN"]
         self.params = self._get_params(model_config, self.model_keys)
         self.model = self._build_model(*self.params)
 
         print(self) if visualise else None
 
-    def _build_model(
-        self,
-        input_size: int,
-        output_size: int,
-        hidden_sizes: list[int],
-        activation_functions: list[str],
-    ) -> nn.Sequential:
-        is_positive_int(input_size)
-        is_positive_int(output_size)
-        is_iterable(hidden_sizes)
-
-        for sizes in hidden_sizes:
-            is_positive_int(sizes)
-
-        has_activation_functions(activation_functions)
-        activation_functions_check(activation_functions, hidden_sizes)
-
-        return nn.Sequential(
-            *self._create_layers(
-                input_size, output_size, hidden_sizes, activation_functions
-            )
-        )
+    def _build_model(self, *kwargs) -> nn.Sequential:
+        try:
+            return nn.Sequential(*self._create_layers(*kwargs))
+        except Exception as e:
+            raise e
 
     def _create_layers(
         self,
@@ -172,28 +155,17 @@ class CML(BaseNetwork):
         :params visualise: A boolean type for visualising structure. Default (False).
         """
         super().__init__()
-        self.model_keys = CML_KEYS
+        self.model_keys = KEYS["CML"]
         self.params = self._get_params(model_config, self.model_keys)
         self.model = self._build_model(*self.params)
 
         print(self) if visualise else None
 
-    def _build_model(
-        self,
-        conv_channels: list[int],
-        conv_kernel_size: int = 3,
-        pool_kernel_size: int = 3,
-    ) -> nn.Sequential:
-        is_positive_int(conv_kernel_size)
-        is_positive_int(pool_kernel_size)
-        is_iterable(conv_channels)
-
-        for channel_sizes in conv_channels:
-            is_positive_int(channel_sizes)
-
-        return nn.Sequential(
-            *self._create_layers(conv_channels, conv_kernel_size, pool_kernel_size)
-        )
+    def _build_model(self, *kwargs) -> nn.Sequential:
+        try:
+            return nn.Sequential(*kwargs)
+        except Exception as e:
+            raise e
 
     def _create_layers(
         self,
@@ -228,14 +200,19 @@ class CNN(BaseNetwork):
         :params visualise: A boolean type for visualising structure. Default (False).
         """
         super().__init__()
-        self.model_keys = CNN_KEYS
+        self.model_keys = KEYS["CNN"]
         self.params = self._get_params(model_config, self.model_keys)
         self.model = self._build_model(*self.params)
-        self.image_size = (0, 0)
 
         print(self) if visualise else None
 
-    def _build_model(
+    def _build_model(self, *kwargs) -> nn.Sequential:
+        try:
+            return nn.Sequential(*self._create_layers(*kwargs))
+        except Exception as e:
+            raise e
+
+    def _create_layers(
         self,
         image_size: tuple[int, int],
         conv_channels: list[int],
@@ -244,34 +221,8 @@ class CNN(BaseNetwork):
         fcn_hidden_sizes: list[int],
         activation_functions: list[str],
         output_channel: int,
-    ) -> nn.Sequential:
-        self.image_size = image_size
-        is_iterable(self.image_size)
-
-        for sizes in self.image_size:
-            is_positive_int(sizes)
-
-        return nn.Sequential(
-            *self._create_layers(
-                conv_channels,
-                conv_kernel_size,
-                pool_kernel_size,
-                fcn_hidden_sizes,
-                activation_functions,
-                output_channel,
-            )
-        )
-
-    def _create_layers(
-        self,
-        conv_channels: list[int],
-        conv_kernel_size: int,
-        pool_kernel_size: int,
-        fcn_hidden_sizes: list[int],
-        activation_functions: list[str],
-        output_channel: int,
     ) -> list[nn.Module]:
-        height, width = self.image_size
+        height, width = image_size
 
         for _ in range(len(conv_channels) - 1):
             height, width = self._compute_output_dim(
