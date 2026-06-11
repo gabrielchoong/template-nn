@@ -174,7 +174,7 @@ class CML(BaseNetwork):
 
     def _build_model(self, *kwargs) -> nn.Sequential:
         try:
-            return nn.Sequential(*kwargs)
+            return nn.Sequential(*self._create_layers(*kwargs))
         except Exception as e:
             raise e
 
