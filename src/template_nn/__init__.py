@@ -18,7 +18,10 @@ class BaseNetwork(nn.Module, ABC):
     # and `_create_layers` is insufficient for the model complexity
     # this is generally unnecessary and not recommended to be overriden
     def forward(self, x: torch.Tensor) -> nn.Module:
-        return self.model(x)
+        try:
+            return self.model(x)
+        except Exception as e:
+            raise e
 
     # stick to implementing `_build_model` and `_create_layers`
     # you do not need to overwrite this 99% of the time
@@ -30,9 +33,17 @@ class BaseNetwork(nn.Module, ABC):
         """
         Dynamically retrieve model specific parameters.
         """
-        is_valid_keys(model_config, model_keys)
-
-        return is_dict(model_config, model_keys)
+        try:
+            # It's been too long since I worked on this codebase hence I barely
+            # know what this one-liner was initially supposed to be.
+            # It was refactored from the `is_dict` function which could be
+            # rewritten as the one-liner below.
+            # It is probably to load the actual configuration defined by the
+            # user and turning the values into a list which is to be processed
+            # further down the data pipeline.
+            return [model_config[key] for key in model_keys]
+        except Exception as e:
+            raise e
 
     @abstractmethod
     def _build_model(self, *args, **kwargs) -> nn.Sequential:
