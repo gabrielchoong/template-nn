@@ -1,11 +1,19 @@
 import torch.nn as nn
 
 from ..args_val import is_iterable, is_positive_int
-
 from .base_nn import BaseNetwork
 from .cml import CML
 from .fnn import FNN
-from ..retrieve_keys import get_model_keys
+
+CNN_KEYS = [
+    "image_size",
+    "conv_channels",
+    "conv_kernel_size",
+    "pool_kernel_size",
+    "fcn_hidden_sizes",
+    "activation_functions",
+    "output_channel",
+]
 
 
 class CNN(BaseNetwork):
@@ -22,8 +30,8 @@ class CNN(BaseNetwork):
         :params model_config: A dictionary / json-like structure for model configuration
         :params visualise: A boolean type for visualising structure. Default (False).
         """
-        super().__init__(visualise)
-        self.model_keys = get_model_keys("CNN")
+        super().__init__()
+        self.model_keys = CNN_KEYS
         self.params = self._get_params(model_config, self.model_keys)
         self.model = self._build_model(*self.params)
         self.image_size = (0, 0)

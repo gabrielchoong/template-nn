@@ -1,9 +1,13 @@
 import torch.nn as nn
 
 from ..args_val import is_iterable, is_positive_int
-
-from ..retrieve_keys import get_model_keys
 from .base_nn import BaseNetwork
+
+CML_KEYS = [
+    "conv_channels",
+    "conv_kernel_size",
+    "pool_kernel_size",
+]
 
 
 class CML(BaseNetwork):
@@ -20,8 +24,8 @@ class CML(BaseNetwork):
         :params model_config: A dictionary / json-like structure for model configuration
         :params visualise: A boolean type for visualising structure. Default (False).
         """
-        super().__init__(visualise)
-        self.model_keys = get_model_keys("CML")
+        super().__init__()
+        self.model_keys = CML_KEYS
         self.params = self._get_params(model_config, self.model_keys)
         self.model = self._build_model(*self.params)
 
