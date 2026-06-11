@@ -2,13 +2,13 @@ from typing import Iterable
 
 
 def is_valid_keys(
-    tabular: dict[str, int | list[int] | list[str]], keys: tuple[str]
+    tabular: dict[str, int | list[int] | list[str]], keys: list[str]
 ) -> None:
     if not all(key in tabular for key in keys):
         raise ValueError(f"Tabular data must contain keys {keys}")
 
 
-def is_dict(tabular: dict, keys: tuple) -> list:
+def is_dict(tabular: dict, keys: list) -> list:
     params = []
     for key in keys:
         params.append(tabular[key])

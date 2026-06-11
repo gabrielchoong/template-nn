@@ -26,7 +26,7 @@ class BaseNetwork(nn.Module, ABC):
     def _get_params(
         self,
         model_config: dict[str, int | list[int] | list[str]],
-        model_keys: tuple[str],
+        model_keys: list[str],
     ) -> list:
         """
         Dynamically retrieve model specific parameters.

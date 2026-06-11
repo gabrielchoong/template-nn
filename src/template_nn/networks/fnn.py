@@ -1,13 +1,19 @@
 import torch.nn as nn
 
-from .base_nn import BaseNetwork
-from ..retrieve_keys import get_model_keys
 from ..args_val import (
-    is_positive_int,
-    is_iterable,
-    has_activation_functions,
     activation_functions_check,
+    has_activation_functions,
+    is_iterable,
+    is_positive_int,
 )
+from .base_nn import BaseNetwork
+
+FNN_KEYS = [
+    "input_size",
+    "output_size",
+    "hidden_sizes",
+    "activation_functions",
+]
 
 
 class FNN(BaseNetwork):
@@ -24,8 +30,8 @@ class FNN(BaseNetwork):
         :params model_config: A dictionary / json-like structure for model configuration
         :params visualise: A boolean type for visualising structure. Default (False).
         """
-        super().__init__(visualise)
-        self.model_keys = get_model_keys("FNN")
+        super().__init__()
+        self.model_keys = FNN_KEYS
         self.params = self._get_params(model_config, self.model_keys)
         self.model = self._build_model(*self.params)
 
