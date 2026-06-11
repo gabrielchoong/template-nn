@@ -1,5 +1,5 @@
 import pytest
-from template_nn.networks.cnn import CNN
+from template_nn import CNN
 
 
 @pytest.mark.parametrize(

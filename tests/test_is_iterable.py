@@ -1,6 +1,6 @@
 import re
 import pytest
-from template_nn.args_val import is_iterable
+from template_nn import is_iterable
 
 
 @pytest.mark.parametrize(

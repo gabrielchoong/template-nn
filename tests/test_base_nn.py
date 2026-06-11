@@ -1,7 +1,7 @@
 import pytest
 import torch.nn as nn
 
-from template_nn.networks.base_nn import BaseNetwork
+from template_nn import BaseNetwork
 
 
 # A dummy subclass for testing BaseNetwork's __init__

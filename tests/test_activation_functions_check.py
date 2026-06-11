@@ -1,7 +1,7 @@
 import re
 import pytest
 import torch.nn as nn
-from template_nn.args_val import activation_functions_check
+from template_nn import activation_functions_check
 
 
 @pytest.mark.parametrize(
@@ -20,8 +20,8 @@ def test_activation_functions_check_error(activation_functions, hidden_sizes):
     with pytest.raises(
         ValueError,
         match=re.escape(
-            "Number of activation functions does not match number of hidden node counts."
-            + f"Expected {activation_functions} of hidden nodes, but got {hidden_sizes} instead."
+            "Number of activation functions does not match number of hidden node counts. "
+            + f"Expected {len(activation_functions)} hidden nodes, but got {len(hidden_sizes)} hidden nodes instead."
         ),
     ):
         activation_functions_check(activation_functions, hidden_sizes)
