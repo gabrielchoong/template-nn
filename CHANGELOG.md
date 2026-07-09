@@ -2,6 +2,26 @@
 
 ## Stable
 
+### 0.3.0
+
+> This version remains backwards compatibility with all `0.2.x` patches. Any compatibility issues that arose from this release will be fixed promptly once discovered.
+
+**Changelog**:
+
+-**a2cac4d** (HEAD -> feat/cleanup, origin/feat/cleanup) ci: Change github action to run only on pr
+-**66dff67** fix: Read _create_layers that was lost in refactor
+-**f973cba** refactor: Delete redundant tests
+-**054060d** refactor: Add try except to naked return functions
+-**b58a6db** refactor: KEYS dict and kwargs
+-**9f29bd6** refactor: Centralise keys definition for all models
+-**f335608** refactor: Remove the function checks
+-**9641735** ci(pytest): Add github actions for pytest
+-**e0b9ca6** refactor(networks,tests): Remove ALL abstractions
+-**1879fcc** refactor!(keys): Refactor handling keys logic
+-**a538680** cleanup!(BaseNetwork): Remove unused params
+
+## Deprecated
+
 ### 0.2.0
 
 > This version will introduce changes that would otherwise be incompatible with v0.1.x of this library. If you depend on v0.1.x, consider locking the version for this library to the latest v0.1.x branch, which is `0.1.6`.
@@ -42,8 +62,6 @@
 - **22d6ebd**: Moved the handling of visualisation of created neural networks out of the `BaseNetwork` class.
 - **c88054d**: Classes inheriting `BaseNetwork` now implements the visualisation separately.
 - **0a280d7**: `forge` now includes the visualisation step when creating new classes using `--install`.
-
-## Stable
 
 ### 0.1.6
 

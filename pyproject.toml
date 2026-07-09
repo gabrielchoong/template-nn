@@ -13,7 +13,7 @@ include = ["template_nn", "template_nn.*"]
 
 [project]
 name = "template-nn"
-version = "0.2.3"
+version = "0.3.0"
 dependencies = [
     "torch>=2.6.0",
 ]
