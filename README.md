@@ -1,50 +1,92 @@
-# Template NN
+<div align="center">
+  <h1>Template NN</h1>
+  <p><strong>A lightweight, declarative, and opinionated neural network library for PyTorch</strong></p>
 
-Template NN is a lightweight, easy-to-use library designed to streamline the learning process of machine learning. It aims to provide a more opinionated interface while maintaining full compatibility with any existing PyTorch code.
+  [![GitHub release (latest by date)](https://img.shields.io/github/v/release/gabrielchoong/template-nn)](https://github.com/gabrielchoong/template-nn/releases)
+  [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+</div>
 
-Huge thanks to the [PyTorch](https://github.com/pytorch/pytorch) team for enabling projects like this.
+<hr/>
 
-## Purpose
+**Template NN** is a lightweight, easy-to-use library designed to streamline the learning process and implementation of machine learning models. It provides an opinionated, declarative interface for rapidly scaffolding architectures like Convolutional Neural Networks (CNNs) and Feedforward Neural Networks (FNNs) while maintaining **100% full compatibility** with existing PyTorch code. 
 
-Initially developed for my thesis to simplify the codebase, but evolved to a library with a declarative interface for testing and benchmarking neural networks.
+If you love the flexibility of PyTorch but want to reduce boilerplate when prototyping, this library is for you.
 
-The classes uses shortened acronyms such as `CNN` for *Convolution Neural Network* with single line instantiation to better focus on the learning aspect of ML.
+Huge thanks to the [PyTorch](https://github.com/pytorch/pytorch) team for enabling projects like this!
+
+---
+
+## Key Features
+
+* **Declarative Architectures**: Scaffold complex networks in a single line. 
+* **Zero Magic**: Acts as a transparent, drop-in wrapper over native `torch.nn.Module`. You still have full access to the underlying PyTorch abstractions.
+* **Readable & Expressive**: Uses intuitive acronyms (e.g., `CNN`, `FNN`) and straightforward arguments to let you focus on ML concepts rather than plumbing.
+* **Prototyping & Benchmarking**: Quickly test hypotheses and benchmark model variants with minimal code churn.
 
 ## Installation
 
-Install this library from PyPI:
+> [!NOTE]
+> The PyPI package for `template-nn` is deprecated (frozen at 0.2.3). Moving forward, all new versions (like `0.3.0`) will be published exclusively as GitHub releases. 
+
+### Directly from GitHub (Recommended)
+
+Install the latest stable release directly from this repository:
 
 ```sh
-pip install template-nn
+pip install git+https://github.com/gabrielchoong/template-nn.git@v0.3.0
 ```
+*(To install the cutting-edge `main` branch, omit the `@v0.3.0` tag).*
 
-Clone the repository and install it locally for development:
+### From Source (For Development)
+
+If you wish to modify the library or contribute, clone the repository and install it locally. We recommend using [`uv`](https://github.com/astral-sh/uv) for fast and reliable environment management.
 
 ```sh
 git clone https://github.com/gabrielchoong/template-nn.git
 cd template-nn
-```
 
-Using `uv` (recommended):
-
-```sh
+# Using uv (Recommended)
 uv venv
 uv sync
 ```
 
-Using `pip` (not recommended for contributing):
-
+*Alternative using `pip` (not recommended for active contributing):*
 ```sh
 pip install -r requirements.txt
-pip install .
+pip install -e .
 ```
 
-## Releases and Contributing
+## Quick Start & Usage
 
-See [changelog](CHANGELOG.md) for previous changes. Expect breaking changes at this stage.
+*More detailed examples coming soon.* 
 
-See [contributing](CONTRIBUTING.md) if you wish to contribute to this project.
+The library uses shortened acronyms for common architectures. For example, you can instantiate a Convolutional Neural Network declaratively:
 
-## License
+```python
+import torch
+from template_nn import CNN
+
+# Example declarative single-line instantiation 
+# (Check source docs for exact signature based on version)
+model = CNN(
+    {} # your configs in here
+)
+
+# Since it inherits from torch.nn.Module, use it just like a native PyTorch model!
+dummy_input = torch.randn(1, 3, 224, 224)
+output = model(dummy_input)
+print(output.shape)
+```
+
+Because **Template NN** avoids proprietary "magic", the returned `model` is a fully compliant PyTorch Module. You can integrate it directly with your existing PyTorch training loops, dataloaders, and optimizers without any friction.
+
+## Contributing
+
+We welcome contributions! As this project is actively evolving, please expect breaking changes between minor versions.
+
+1. See our [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on how to get started.
+2. Check the [CHANGELOG.md](CHANGELOG.md) to track recent updates and breaking changes.
+
+##  License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
