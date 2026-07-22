@@ -56,6 +56,7 @@ class FNNConfig(Config):
 class CNNConfig(Config):
     image_size: tuple[int, int]
     conv_channels: list[int]
+    pool_method: str
     conv_kernel_size: int
     pool_kernel_size: int
     fcn_hidden_sizes: list[int]
