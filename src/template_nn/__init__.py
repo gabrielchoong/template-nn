@@ -209,6 +209,7 @@ class CML(BaseNetwork):
     def _create_layers(
         self,
         conv_channels: list[int],
+        pool_method: str = "MaxPool2d",
         conv_kernel_size: int = 3,
         pool_kernel_size: int = 3,
     ) -> list[nn.Module]:
@@ -218,7 +219,7 @@ class CML(BaseNetwork):
 
         for out_size in conv_channels[1:]:
             layers.append(nn.Conv2d(in_size, out_size, conv_kernel_size))
-            layers.append(nn.MaxPool2d(pool_kernel_size, stride))
+            layers.append(getattr(nn, pool_method)(pool_kernel_size, stride))
             in_size = out_size
 
         return layers
@@ -255,6 +256,7 @@ class CNN(BaseNetwork):
         self,
         image_size: tuple[int, int],
         conv_channels: list[int],
+        pool_method: str,
         conv_kernel_size: int,
         pool_kernel_size: int,
         fcn_hidden_sizes: list[int],
@@ -271,6 +273,7 @@ class CNN(BaseNetwork):
         conv_layers = CML(
             {
                 "conv_channels": conv_channels,
+                "pool_method": pool_method,
                 "conv_kernel_size": conv_kernel_size,
                 "pool_kernel_size": pool_kernel_size,
             },
