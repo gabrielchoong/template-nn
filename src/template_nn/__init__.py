@@ -1,3 +1,10 @@
+# Copyright (c) 2024-2026 Gabriel
+#
+# SPDX-License-Identifier: MIT
+
+# =====================================================================================
+# Code Imports
+# =====================================================================================
 from abc import ABC, abstractmethod
 from typing import TypedDict
 
@@ -5,6 +12,9 @@ import torch
 from torch import nn
 
 
+# =====================================================================================
+# Model Configuration Options
+# =====================================================================================
 KEYS = {  # TODO: Is it possible to refactor such that this dict is no longer needed?
     "FNN": [
         "input_size",
@@ -29,6 +39,9 @@ KEYS = {  # TODO: Is it possible to refactor such that this dict is no longer ne
 }
 
 
+# =====================================================================================
+# Constructor Configuration Options
+# =====================================================================================
 class Config(TypedDict):
     pass
 
@@ -57,6 +70,9 @@ class CMLConfig(Config):
     pool_kernel_size: int
 
 
+# =====================================================================================
+# Network Implementations
+# =====================================================================================
 class BaseNetwork(nn.Module, ABC):
     """
     All network classes should inherit from this class. This class is not supposed to be constructed directly.
@@ -133,6 +149,7 @@ class BaseNetwork(nn.Module, ABC):
         raise NotImplementedError("Define layer structure here")
 
 
+# --- Feed Forward Neural Network ---
 class FNN(BaseNetwork):
     """
     A Feedforward Neural Network (FNN) model for supervised learning.
@@ -179,6 +196,7 @@ class FNN(BaseNetwork):
         return layers
 
 
+# --- Convolution Pooling Layer ---
 class CML(BaseNetwork):
     """
     A Convolution - MaxPooling Layer (CML) component for CNNs.
@@ -225,6 +243,7 @@ class CML(BaseNetwork):
         return layers
 
 
+# --- Convolutional Neural Network ---
 class CNN(BaseNetwork):
     """
     A Convolutional Neural Network (CNN) model for supervised learning.
