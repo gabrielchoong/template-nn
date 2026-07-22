@@ -1,8 +1,36 @@
 from abc import ABC, abstractmethod
-from typing import Iterable
+from typing import TypedDict
 
 import torch
 from torch import nn
+
+
+class Config(TypedDict):
+    pass
+
+
+class FNNConfig(Config):
+    input_size: int
+    output_size: int
+    hidden_sizes: list[int]
+    activation_functions: list[str]
+
+
+class CNNConfig(Config):
+    image_size: tuple[int, int]
+    conv_channels: list[int]
+    conv_kernel_size: int
+    pool_kernel_size: int
+    fcn_hidden_sizes: list[int]
+    activation_functions: list[str]
+    output_channel: int
+
+
+class CMLConfig(Config):
+    conv_channels: list[int]
+    pool_method: str
+    conv_kernel_size: int
+    pool_kernel_size: int
 
 
 class BaseNetwork(nn.Module, ABC):
@@ -27,7 +55,7 @@ class BaseNetwork(nn.Module, ABC):
     # you do not need to overwrite this 99% of the time
     def _get_params(
         self,
-        model_config: dict[str, int | list[int] | list[str]],
+        model_config: Config,
         model_keys: list[str],
     ) -> list:
         """
@@ -112,7 +140,7 @@ class FNN(BaseNetwork):
 
     def __init__(
         self,
-        model_config: dict[str, int | list[int] | list[str]],
+        model_config: FNNConfig,
         visualise: bool = False,
     ) -> None:
         """
@@ -158,7 +186,7 @@ class CML(BaseNetwork):
 
     def __init__(
         self,
-        model_config: dict[str, int | list[int] | list[str]],
+        model_config: CMLConfig,
         visualise: bool = False,
     ) -> None:
         """
@@ -203,7 +231,7 @@ class CNN(BaseNetwork):
 
     def __init__(
         self,
-        model_config: dict[str, int | list[int] | list[str]],
+        model_config: CNNConfig,
         visualise: bool = False,
     ) -> None:
         """
