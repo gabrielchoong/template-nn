@@ -172,9 +172,9 @@ class FNN(BaseNetwork):
 
         print(self) if visualise else None
 
-    def _build_model(self, *kwargs) -> nn.Sequential:
+    def _build_model(self, *args) -> nn.Sequential:
         try:
-            return nn.Sequential(*self._create_layers(*kwargs))
+            return nn.Sequential(*self._create_layers(*args))
         except Exception as e:
             raise e
 
@@ -219,9 +219,9 @@ class CML(BaseNetwork):
 
         print(self) if visualise else None
 
-    def _build_model(self, *kwargs) -> nn.Sequential:
+    def _build_model(self, *args) -> nn.Sequential:
         try:
-            return nn.Sequential(*self._create_layers(*kwargs))
+            return nn.Sequential(*self._create_layers(*args))
         except Exception as e:
             raise e
 
@@ -266,9 +266,9 @@ class CNN(BaseNetwork):
 
         print(self) if visualise else None
 
-    def _build_model(self, *kwargs) -> nn.Sequential:
+    def _build_model(self, *args) -> nn.Sequential:
         try:
-            return nn.Sequential(*self._create_layers(*kwargs))
+            return nn.Sequential(*self._create_layers(*args))
         except Exception as e:
             raise e
 
